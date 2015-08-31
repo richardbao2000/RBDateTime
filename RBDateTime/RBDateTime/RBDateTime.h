@@ -19,11 +19,11 @@
 
 - (instancetype)initWithNSDate:(NSDate *)date
                       calendar:(NSCalendar *)calendar
-                      timezone:(NSTimeZone *)timeZone;
+                      timeZone:(NSTimeZone *)timeZone;
 
 - (instancetype)initWithTimeIntervalSinceReferenceDate:(NSTimeInterval)timeIntervalSinceReferenceDate
                                               calendar:(NSCalendar *)calendar
-                                              timezone:(NSTimeZone *)timeZone;
+                                              timeZone:(NSTimeZone *)timeZone;
 
 - (instancetype)initWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day;
 
@@ -117,7 +117,9 @@
 
 #pragma mark - Constructing by altering
 
+- (instancetype)dateTimeByAddingYears:(NSInteger)years months:(NSInteger)months days:(NSInteger)days;
 - (instancetype)dateTimeByAddingDays:(NSInteger)days;
+- (instancetype)dateTimeByAddingHours:(NSInteger)hours minutes:(NSInteger)minutes seconds:(NSInteger)seconds;
 
 - (instancetype)dateTimeByAddingYears:(NSInteger)years months:(NSInteger)months days:(NSInteger)days
                                 hours:(NSInteger)hours minutes:(NSInteger)minutes seconds:(NSInteger)seconds
