@@ -35,6 +35,8 @@ static NSCalendarUnit kValidCalendarUnits =
     NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond | NSCalendarUnitNanosecond |
     NSCalendarUnitCalendar | NSCalendarUnitTimeZone;
 
+const double kNanosecondsInMillisecond = 1000000;
+
 + (void)initialize {
     _gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     _utcTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
@@ -44,17 +46,7 @@ static NSCalendarUnit kValidCalendarUnits =
 #pragma mark - Initializers
 
 - (instancetype)init {
-    self = [super init];
-    if (self) {
-        _nsDateTime = [NSDate new];
-
-        self.calendar = nil;
-        self.timeZone = nil;
-
-        [self _generateComponentsFromNSDate];
-    }
-
-    return self;
+    return [self initWithNSDate:[NSDate new] calendar:nil timeZone:nil];
 }
 
 - (instancetype)initWithNSDate:(NSDate *)date
@@ -63,6 +55,7 @@ static NSCalendarUnit kValidCalendarUnits =
     self = [super init];
     if (self) {
         _nsDateTime = date;
+        _components = [NSDateComponents new];
 
         self.calendar = calendar;
         self.timeZone = timeZone;
@@ -79,6 +72,7 @@ static NSCalendarUnit kValidCalendarUnits =
     self = [super init];
     if (self) {
         _nsDateTime = [NSDate dateWithTimeIntervalSinceReferenceDate:timeIntervalSinceReferenceDate];
+        _components = [NSDateComponents new];
 
         self.calendar = calendar;
         self.timeZone = timeZone;
@@ -91,7 +85,7 @@ static NSCalendarUnit kValidCalendarUnits =
 
 - (instancetype)initWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
                         hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second
-                  nanosecond:(NSInteger)nanosecond
+                 millisecond:(NSInteger)millisecond
                     calendar:(NSCalendar *)calendar
                     timeZone:(NSTimeZone *)timeZone {
     self = [super init];
@@ -104,7 +98,7 @@ static NSCalendarUnit kValidCalendarUnits =
         _components.hour = hour;
         _components.minute = minute;
         _components.second = second;
-        _components.nanosecond = nanosecond;
+        _components.nanosecond = millisecond * kNanosecondsInMillisecond;
 
         self.calendar = calendar;
         self.timeZone = timeZone;
@@ -123,6 +117,7 @@ static NSCalendarUnit kValidCalendarUnits =
     self = [super init];
     if (self) {
         _components = components;
+        _components.calendar.timeZone = components.timeZone;
 
         if (requireValidation) {
             [self _validateComponents];
@@ -145,12 +140,14 @@ static NSCalendarUnit kValidCalendarUnits =
 }
 
 - (void)_generateNSDateCacheFromComponents {
+    self.calendar.timeZone = self.timeZone;
     _nsDateTime = [self.calendar dateFromComponents:_components];
 }
 
 - (void)_generateComponentsFromNSDate {
-    NSDateComponents *newComps = [_gregorian components:kValidCalendarUnits
-                                               fromDate:_nsDateTime];
+    self.calendar.timeZone = self.timeZone;
+    NSDateComponents *newComps = [self.calendar components:kValidCalendarUnits
+                                                  fromDate:_nsDateTime];
     newComps.calendar = _components.calendar;
     newComps.timeZone = _components.timeZone;
 
@@ -174,16 +171,15 @@ static NSCalendarUnit kValidCalendarUnits =
     return _nsDateTime;
 }
 
-- (NSInteger)year {
-    return _components.year;
-}
+- (NSInteger)year { return _components.year; }
+- (NSInteger)month { return _components.month; }
+- (NSInteger)day { return _components.day; }
+- (NSInteger)hour { return _components.hour; }
+- (NSInteger)minute { return _components.minute; }
+- (NSInteger)second { return _components.second; }
 
-- (NSInteger)month {
-    return _components.month;
-}
-
-- (NSInteger)day {
-    return _components.day;
+- (NSInteger)millisecond {
+    return round(_components.nanosecond / kNanosecondsInMillisecond);
 }
 
 - (NSCalendar *)calendar {
@@ -254,15 +250,15 @@ static NSCalendarUnit kValidCalendarUnits =
 
 #pragma mark - Time Zone Converting
 
-- (instancetype)convertToUTCTime {
-    return [self convertToTimeZone:_utcTimeZone];
+- (instancetype)utcTime {
+    return [self dateTimeInTimeZone:_utcTimeZone];
 }
 
-- (instancetype)convertToLocalTime {
-    return [self convertToTimeZone:[NSTimeZone localTimeZone]];
+- (instancetype)localTime {
+    return [self dateTimeInTimeZone:[NSTimeZone localTimeZone]];
 }
 
-- (instancetype)convertToTimeZone:(NSTimeZone *)targetTimeZone {
+- (instancetype)dateTimeInTimeZone:(NSTimeZone *)targetTimeZone {
     NSDateComponents *newComps = [_components.calendar componentsInTimeZone:targetTimeZone
                                                                    fromDate:_nsDateTime];
     return [[RBDateTime alloc] _initWithComponents:newComps requireValidation:YES];
@@ -270,39 +266,5 @@ static NSCalendarUnit kValidCalendarUnits =
 
 
 
-
-
-
-
-
-
-
-
 @end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

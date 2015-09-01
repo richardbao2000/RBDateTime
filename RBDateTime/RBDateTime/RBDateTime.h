@@ -36,12 +36,12 @@
 
 - (instancetype)initWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
                         hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second
-                  nanosecond:(NSInteger)nanosecond
+                 millisecond:(NSInteger)millisecond
                     calendar:(NSCalendar *)calendar;
 
 - (instancetype)initWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
                         hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second
-                  nanosecond:(NSInteger)nanosecond
+                 millisecond:(NSInteger)millisecond
                     calendar:(NSCalendar *)calendar
                     timeZone:(NSTimeZone *)timeZone;
 
@@ -70,12 +70,12 @@
 
 + (instancetype)dateWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
                         hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second
-                  nanosecond:(NSInteger)nanosecond
+                 millisecond:(NSInteger)millisecond
                     calendar:(NSCalendar *)calendar;
 
 + (instancetype)dateWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
                         hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second
-                  nanosecond:(NSInteger)nanosecond
+                 millisecond:(NSInteger)millisecond
                     calendar:(NSCalendar *)calendar
                     timeZone:(NSTimeZone *)timeZone;
 
@@ -123,7 +123,7 @@
 
 - (instancetype)dateTimeByAddingYears:(NSInteger)years months:(NSInteger)months days:(NSInteger)days
                                 hours:(NSInteger)hours minutes:(NSInteger)minutes seconds:(NSInteger)seconds
-                          nanoseconds:(NSInteger)nanoseconds;
+                         milliseconds:(NSInteger)milliseconds;
 
 //- (instancetype)dateTimeByAddingTimeSpan:(RBTimeSpan *)timeSpan;
 //- (instancetype)dateTimeBySubtractingTimeSpan:(RBTimeSpan *)timeSpan;
@@ -132,9 +132,9 @@
 
 #pragma mark - Time Zone Converting
 
-- (instancetype)convertToUTCTime;
-- (instancetype)convertToLocalTime;
-- (instancetype)convertToTimeZone:(NSTimeZone *)targetTimeZone;
+- (instancetype)utcTime;
+- (instancetype)localTime;
+- (instancetype)dateTimeInTimeZone:(NSTimeZone *)targetTimeZone;
 
 
 
