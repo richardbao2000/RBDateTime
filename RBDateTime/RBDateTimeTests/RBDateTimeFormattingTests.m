@@ -45,23 +45,21 @@ static NSLocale *FrenchLocale = nil;
 }
 
 - (void)testLocalizedStringWithDateStyleTimeStyle {
-    RBDateTime *date = [[RBDateTime alloc] initWithYear:2015 month:1 day:6
-                                                   hour:9 minute:41 second:6
-                                               timeZone:HonoluluTime];
+    RBDateTime *date = [RBDateTime dateTimeWithYear:2015 month:1 day:6 hour:9 minute:41 second:6
+                                           timeZone:HonoluluTime];
     NSString *localizedStringDefault = [date localizedStringWithDateStyle:NSDateFormatterMediumStyle
                                                                 timeStyle:NSDateFormatterShortStyle];
     NSString *localizedStringManual = [date localizedStringWithDateStyle:NSDateFormatterMediumStyle
-                                                             timeStyle:NSDateFormatterShortStyle
-                                                              timeZone:HonoluluTime
-                                                                locale:[NSLocale currentLocale]];
+                                                               timeStyle:NSDateFormatterShortStyle
+                                                                timeZone:HonoluluTime
+                                                                  locale:[NSLocale currentLocale]];
 
     XCTAssertStringEqual(localizedStringDefault, localizedStringManual);
 }
 
 - (void)testLocalizedStringWithDateStyleTimeStyleTimeZone {
-    RBDateTime *date = [[RBDateTime alloc] initWithYear:2015 month:1 day:6
-                                                   hour:9 minute:41 second:6
-                                               timeZone:HonoluluTime];
+    RBDateTime *date = [RBDateTime dateTimeWithYear:2015 month:1 day:6 hour:9 minute:41 second:6
+                                           timeZone:HonoluluTime];
     NSString *localizedStringDefault = [date localizedStringWithDateStyle:NSDateFormatterMediumStyle
                                                                 timeStyle:NSDateFormatterShortStyle
                                                                  timeZone:UtcTime];
@@ -74,21 +72,19 @@ static NSLocale *FrenchLocale = nil;
 }
 
 - (void)testLocalizedStringWithDateStyleTimeStyleTimeZoneLocale {
-    RBDateTime *date = [[RBDateTime alloc] initWithYear:2015 month:1 day:6
-                                                   hour:9 minute:41 second:6
-                                               timeZone:HonoluluTime];
+    RBDateTime *date = [RBDateTime dateTimeWithYear:2015 month:1 day:6 hour:9 minute:41 second:6
+                                           timeZone:HonoluluTime];
     NSString *localizedString = [date localizedStringWithDateStyle:NSDateFormatterMediumStyle
                                                          timeStyle:NSDateFormatterShortStyle
                                                           timeZone:UtcTime
                                                             locale:FrenchLocale];
 
-    XCTAssertStringEqual(localizedString, @"6 janv. 2015 17:41");
+    XCTAssertStringEqual(localizedString, @"6 janv. 2015 19:41");
 }
 
 - (void)testLocalizedStringWithFormatTemplate {
-    RBDateTime *date = [[RBDateTime alloc] initWithYear:2015 month:1 day:6
-                                                   hour:9 minute:41 second:6
-                                               timeZone:HonoluluTime];
+    RBDateTime *date = [RBDateTime dateTimeWithYear:2015 month:1 day:6 hour:9 minute:41 second:6
+                                           timeZone:HonoluluTime];
     NSString *localizedStringDefault = [date localizedStringWithFormatTemplate:@"eee yyyyMMMd Hms"];
     NSString *localizedStringManual = [date localizedStringWithFormatTemplate:@"eee yyyyMMMd Hms"
                                                                      timeZone:HonoluluTime
@@ -98,9 +94,8 @@ static NSLocale *FrenchLocale = nil;
 }
 
 - (void)testLocalizedStringWithFormatTemplateTimeZone {
-    RBDateTime *date = [[RBDateTime alloc] initWithYear:2015 month:1 day:6
-                                                   hour:9 minute:41 second:6
-                                               timeZone:HonoluluTime];
+    RBDateTime *date = [RBDateTime dateTimeWithYear:2015 month:1 day:6 hour:9 minute:41 second:6
+                                           timeZone:HonoluluTime];
     NSString *localizedStringDefault = [date localizedStringWithFormatTemplate:@"eee yyyyMMMd Hms"
                                                                       timeZone:UtcTime];
     NSString *localizedStringManual = [date localizedStringWithFormatTemplate:@"eee yyyyMMMd Hms"
@@ -111,20 +106,18 @@ static NSLocale *FrenchLocale = nil;
 }
 
 - (void)testLocalizedStringWithFormatTemplateTimeZoneLocale {
-    RBDateTime *date = [[RBDateTime alloc] initWithYear:2015 month:1 day:6
-                                                   hour:9 minute:41 second:6
-                                               timeZone:HonoluluTime];
+    RBDateTime *date = [RBDateTime dateTimeWithYear:2015 month:1 day:6 hour:9 minute:41 second:6
+                                           timeZone:HonoluluTime];
     NSString *localizedString = [date localizedStringWithFormatTemplate:@"eee yyyyMMMd Hms"
-                                                          timeZone:UtcTime
-                                                            locale:FrenchLocale];
+                                                               timeZone:UtcTime
+                                                                 locale:FrenchLocale];
 
-    XCTAssertStringEqual(localizedString, @"mar. 6 janv. 2015 17:41:06");
+    XCTAssertStringEqual(localizedString, @"mar. 6 janv. 2015 19:41:06");
 }
 
 - (void)testLocalizedStringWithFormat {
-    RBDateTime *date = [[RBDateTime alloc] initWithYear:2015 month:1 day:6
-                                                   hour:9 minute:41 second:6
-                                               timeZone:HonoluluTime];
+    RBDateTime *date = [RBDateTime dateTimeWithYear:2015 month:1 day:6 hour:9 minute:41 second:6
+                                           timeZone:HonoluluTime];
     NSString *localizedStringDefault = [date localizedStringWithFormat:@"eee, MMM d, yyyy, H:mm:ss"];
     NSString *localizedStringManual = [date localizedStringWithFormat:@"eee, MMM d, yyyy, H:mm:ss"
                                                              timeZone:HonoluluTime
@@ -134,8 +127,7 @@ static NSLocale *FrenchLocale = nil;
 }
 
 - (void)testLocalizedStringWithFormatTimeZone {
-    RBDateTime *date = [[RBDateTime alloc] initWithYear:2015 month:1 day:6
-                                                   hour:9 minute:41 second:6
+    RBDateTime *date = [RBDateTime dateTimeWithYear:2015 month:1 day:6 hour:9 minute:41 second:6
                                                timeZone:HonoluluTime];
     NSString *localizedStringDefault = [date localizedStringWithFormat:@"eee, MMM d, yyyy, H:mm:ss"
                                                               timeZone:UtcTime];
@@ -147,19 +139,17 @@ static NSLocale *FrenchLocale = nil;
 }
 
 - (void)testLocalizedStringWithFormatTimeZoneLocale {
-    RBDateTime *date = [[RBDateTime alloc] initWithYear:2015 month:1 day:6
-                                                   hour:9 minute:41 second:6
+    RBDateTime *date = [RBDateTime dateTimeWithYear:2015 month:1 day:6 hour:9 minute:41 second:6
                                                timeZone:HonoluluTime];
     NSString *localizedString = [date localizedStringWithFormat:@"eee, MMM d, yyyy, H:mm:ss"
                                                        timeZone:UtcTime
                                                          locale:FrenchLocale];
 
-    XCTAssertStringEqual(localizedString, @"mar., janv. 6, 2015, 17:41:06");
+    XCTAssertStringEqual(localizedString, @"mar., janv. 6, 2015, 19:41:06");
 }
 
 - (void)testLocalizedDate {
-    RBDateTime *date = [[RBDateTime alloc] initWithYear:2015 month:1 day:6
-                                                   hour:9 minute:41 second:6
+    RBDateTime *date = [RBDateTime dateTimeWithYear:2015 month:1 day:6 hour:9 minute:41 second:6
                                                timeZone:HonoluluTime];
     [RBDateTime setDefaultDateStyle:NSDateFormatterFullStyle];
 
@@ -171,8 +161,7 @@ static NSLocale *FrenchLocale = nil;
 }
 
 - (void)testLocalizedTime {
-    RBDateTime *date = [[RBDateTime alloc] initWithYear:2015 month:1 day:6
-                                                   hour:9 minute:41 second:6
+    RBDateTime *date = [RBDateTime dateTimeWithYear:2015 month:1 day:6 hour:9 minute:41 second:6
                                                timeZone:HonoluluTime];
     [RBDateTime setDefaultTimeStyle:NSDateFormatterFullStyle];
 
@@ -184,8 +173,7 @@ static NSLocale *FrenchLocale = nil;
 }
 
 - (void)testLocalizedString {
-    RBDateTime *date = [[RBDateTime alloc] initWithYear:2015 month:1 day:6
-                                                   hour:9 minute:41 second:6
+    RBDateTime *date = [RBDateTime dateTimeWithYear:2015 month:1 day:6 hour:9 minute:41 second:6
                                                timeZone:HonoluluTime];
 
     [RBDateTime setDefaultDateStyle:NSDateFormatterShortStyle];
@@ -213,8 +201,7 @@ static NSLocale *FrenchLocale = nil;
 }
 
 - (void)testFormattedUnixTimestamp {
-    RBDateTime *date = [[RBDateTime alloc] initWithYear:2015 month:1 day:6
-                                                   hour:9 minute:41 second:6
+    RBDateTime *date = [RBDateTime dateTimeWithYear:2015 month:1 day:6 hour:9 minute:41 second:6
                                                timeZone:HonoluluTime];
     NSString *unixTimestamp = [date formattedUnixTimestamp];
 
@@ -222,8 +209,7 @@ static NSLocale *FrenchLocale = nil;
 }
 
 - (void)testFormattedUnixTimestampUTC {
-    RBDateTime *date = [[RBDateTime alloc] initWithYear:2015 month:1 day:6
-                                                   hour:9 minute:41 second:6
+    RBDateTime *date = [RBDateTime dateTimeWithYear:2015 month:1 day:6 hour:9 minute:41 second:6
                                                timeZone:HonoluluTime];
     NSString *unixTimestamp = [date formattedUnixTimestampUTC];
 

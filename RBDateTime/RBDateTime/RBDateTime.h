@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class RBTimeSpan;
+#import "RBDuration.h"
 
 @interface RBDateTime : NSObject
 
@@ -25,19 +25,6 @@
                                               calendar:(NSCalendar *)calendar
                                               timeZone:(NSTimeZone *)timeZone;
 
-- (instancetype)initWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day;
-
-- (instancetype)initWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
-                        hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second;
-
-- (instancetype)initWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
-                        hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second
-                    timeZone:(NSTimeZone *)timeZone;
-
-- (instancetype)initWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
-                        hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second
-                    calendar:(NSCalendar *)calendar;
-
 - (instancetype)initWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
                         hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second
                  millisecond:(NSInteger)millisecond
@@ -45,31 +32,31 @@
                     timeZone:(NSTimeZone *)timeZone;
 
 + (instancetype)dateTimeWithNSDate:(NSDate *)date
-                      calendar:(NSCalendar *)calendar
-                      timezone:(NSTimeZone *)timeZone;
+                          calendar:(NSCalendar *)calendar
+                          timezone:(NSTimeZone *)timeZone;
 
 + (instancetype)dateTimeWithTimeIntervalSinceReferenceDate:(NSTimeInterval)timeIntervalSinceReferenceDate
-                                              calendar:(NSCalendar *)calendar
-                                              timezone:(NSTimeZone *)timeZone;
+                                                  calendar:(NSCalendar *)calendar
+                                                  timezone:(NSTimeZone *)timeZone;
 
 + (instancetype)dateTimeWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day;
 
 + (instancetype)dateTimeWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
-                        hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second;
+                            hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second;
 
 + (instancetype)dateTimeWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
-                        hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second
-                    timeZone:(NSTimeZone *)timeZone;
+                            hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second
+                        timeZone:(NSTimeZone *)timeZone;
 
 + (instancetype)dateTimeWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
-                        hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second
-                    calendar:(NSCalendar *)calendar;
+                            hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second
+                        calendar:(NSCalendar *)calendar;
 
 + (instancetype)dateTimeWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
-                        hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second
-                 millisecond:(NSInteger)millisecond
-                    calendar:(NSCalendar *)calendar
-                    timeZone:(NSTimeZone *)timeZone;
+                            hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second
+                     millisecond:(NSInteger)millisecond
+                        calendar:(NSCalendar *)calendar
+                        timeZone:(NSTimeZone *)timeZone;
 
 + (instancetype)now;
 + (instancetype)nowUTC;
@@ -79,7 +66,7 @@
 
 
 
-#pragma mark - Properties
+#pragma mark - Components
 
 @property (nonatomic, readonly) NSDate *NSDate;
 
@@ -94,6 +81,10 @@
 @property (nonatomic, readonly) NSCalendar *calendar;
 @property (nonatomic, readonly) NSTimeZone *timeZone;
 
+
+
+#pragma mark - Convenient Computation
+
 @property (nonatomic, readonly) NSTimeInterval timeIntervalSinceReferenceDate;
 @property (nonatomic, readonly) NSTimeInterval unixTimestamp;
 
@@ -101,7 +92,7 @@
 @property (nonatomic, readonly) BOOL isLeapMonth;
 
 @property (nonatomic, readonly) RBDateTime *date;
-//@property (nonatomic, readonly) RBTimeSpan *timeOfDay;
+@property (nonatomic, readonly) RBDuration *timeOfDay;
 
 @property (nonatomic, readonly) NSInteger dayOfWeek;
 @property (nonatomic, readonly) NSInteger dayOfYear;
@@ -114,7 +105,7 @@
 
 
 
-#pragma mark - Adding and Subtracting
+#pragma mark - Operations
 
 - (instancetype)dateTimeByAddingYears:(NSInteger)years months:(NSInteger)months days:(NSInteger)days;
 - (instancetype)dateTimeByAddingDays:(NSInteger)days;
@@ -124,16 +115,21 @@
                                 hours:(NSInteger)hours minutes:(NSInteger)minutes seconds:(NSInteger)seconds
                          milliseconds:(NSInteger)milliseconds;
 
-//- (instancetype)dateTimeByAddingTimeSpan:(RBTimeSpan *)timeSpan;
-//- (instancetype)dateTimeBySubtractingTimeSpan:(RBTimeSpan *)timeSpan;
+- (instancetype)dateTimeByAddingDuration:(RBDuration *)duration;
+- (instancetype)dateTimeBySubtractingDuration:(RBDuration *)duration;
 
 - (void)addYears:(NSInteger)years months:(NSInteger)months days:(NSInteger)days;
 - (void)addDays:(NSInteger)days;
 - (void)addHours:(NSInteger)hours minutes:(NSInteger)minutes seconds:(NSInteger)seconds;
 
 - (void)addYears:(NSInteger)years months:(NSInteger)months days:(NSInteger)days
-                   hours:(NSInteger)hours minutes:(NSInteger)minutes seconds:(NSInteger)seconds
-            milliseconds:(NSInteger)milliseconds;
+           hours:(NSInteger)hours minutes:(NSInteger)minutes seconds:(NSInteger)seconds
+    milliseconds:(NSInteger)milliseconds;
+
+- (void)addDuration:(RBDuration *)duration;
+- (void)subtractDuration:(RBDuration *)duration;
+
+- (BOOL)equalsTo:(RBDateTime *)dateTime;
 
 
 

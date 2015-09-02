@@ -9,15 +9,17 @@
 /* Begin PBXBuildFile section */
 		7926328E1B94E2F10093FAEA /* RBDateTimeBasicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7926328D1B94E2F10093FAEA /* RBDateTimeBasicTests.m */; };
 		792632901B94F9B70093FAEA /* RBDateTimeTimeZoneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7926328F1B94F9B70093FAEA /* RBDateTimeTimeZoneTests.m */; };
-		79372C041B9587B100FBC121 /* RBDateTimeAddingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 79372C031B9587B100FBC121 /* RBDateTimeAddingTests.m */; };
+		79372C041B9587B100FBC121 /* RBDateTimeOperationsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 79372C031B9587B100FBC121 /* RBDateTimeOperationsTests.m */; };
 		79372C071B961F4500FBC121 /* RBDateTime+Formatting.m in Sources */ = {isa = PBXBuildFile; fileRef = 79372C061B961F4500FBC121 /* RBDateTime+Formatting.m */; };
 		79372C091B9627CE00FBC121 /* RBDateTimeFormattingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 79372C081B9627CE00FBC121 /* RBDateTimeFormattingTests.m */; };
 		79372C0A1B96287E00FBC121 /* RBDateTime+Formatting.m in Sources */ = {isa = PBXBuildFile; fileRef = 79372C061B961F4500FBC121 /* RBDateTime+Formatting.m */; };
+		79372C0C1B976E2400FBC121 /* RBDurationBasicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 79372C0B1B976E2400FBC121 /* RBDurationBasicTests.m */; };
+		79372C0E1B979DB500FBC121 /* RBDurationOperationsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 79372C0D1B979DB500FBC121 /* RBDurationOperationsTests.m */; };
 		79C807B61B8BDFC2008F2938 /* RBDateTime.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79C807B51B8BDFC2008F2938 /* RBDateTime.h */; };
 		79C807B81B8BDFC2008F2938 /* RBDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C807B71B8BDFC2008F2938 /* RBDateTime.m */; };
 		79C807BE1B8BDFC2008F2938 /* libRBDateTime.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 79C807B21B8BDFC2008F2938 /* libRBDateTime.a */; };
-		79C807D01B8BE60D008F2938 /* RBTimeSpan.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C807CF1B8BE60D008F2938 /* RBTimeSpan.m */; };
-		79C807D11B8BE60D008F2938 /* RBTimeSpan.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C807CF1B8BE60D008F2938 /* RBTimeSpan.m */; };
+		79C807D01B8BE60D008F2938 /* RBDuration.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C807CF1B8BE60D008F2938 /* RBDuration.m */; };
+		79C807D11B8BE60D008F2938 /* RBDuration.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C807CF1B8BE60D008F2938 /* RBDuration.m */; };
 		79C807D21B8BE611008F2938 /* RBDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C807B71B8BDFC2008F2938 /* RBDateTime.m */; };
 /* End PBXBuildFile section */
 
@@ -47,17 +49,19 @@
 /* Begin PBXFileReference section */
 		7926328D1B94E2F10093FAEA /* RBDateTimeBasicTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBDateTimeBasicTests.m; sourceTree = "<group>"; };
 		7926328F1B94F9B70093FAEA /* RBDateTimeTimeZoneTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBDateTimeTimeZoneTests.m; sourceTree = "<group>"; };
-		79372C031B9587B100FBC121 /* RBDateTimeAddingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBDateTimeAddingTests.m; sourceTree = "<group>"; };
+		79372C031B9587B100FBC121 /* RBDateTimeOperationsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBDateTimeOperationsTests.m; sourceTree = "<group>"; };
 		79372C061B961F4500FBC121 /* RBDateTime+Formatting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RBDateTime+Formatting.m"; sourceTree = "<group>"; };
 		79372C081B9627CE00FBC121 /* RBDateTimeFormattingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBDateTimeFormattingTests.m; sourceTree = "<group>"; };
+		79372C0B1B976E2400FBC121 /* RBDurationBasicTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBDurationBasicTests.m; sourceTree = "<group>"; };
+		79372C0D1B979DB500FBC121 /* RBDurationOperationsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBDurationOperationsTests.m; sourceTree = "<group>"; };
 		79C807B21B8BDFC2008F2938 /* libRBDateTime.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRBDateTime.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		79C807B51B8BDFC2008F2938 /* RBDateTime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RBDateTime.h; sourceTree = "<group>"; };
 		79C807B71B8BDFC2008F2938 /* RBDateTime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RBDateTime.m; sourceTree = "<group>"; };
 		79C807BD1B8BDFC2008F2938 /* RBDateTimeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RBDateTimeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		79C807C31B8BDFC2008F2938 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		79C807CC1B8BE076008F2938 /* RBDateTimeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBDateTimeTests.m; sourceTree = "<group>"; };
-		79C807CE1B8BE60D008F2938 /* RBTimeSpan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBTimeSpan.h; sourceTree = "<group>"; };
-		79C807CF1B8BE60D008F2938 /* RBTimeSpan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBTimeSpan.m; sourceTree = "<group>"; };
+		79C807CE1B8BE60D008F2938 /* RBDuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBDuration.h; sourceTree = "<group>"; };
+		79C807CF1B8BE60D008F2938 /* RBDuration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBDuration.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,8 +107,8 @@
 				79C807B51B8BDFC2008F2938 /* RBDateTime.h */,
 				79C807B71B8BDFC2008F2938 /* RBDateTime.m */,
 				79372C061B961F4500FBC121 /* RBDateTime+Formatting.m */,
-				79C807CE1B8BE60D008F2938 /* RBTimeSpan.h */,
-				79C807CF1B8BE60D008F2938 /* RBTimeSpan.m */,
+				79C807CE1B8BE60D008F2938 /* RBDuration.h */,
+				79C807CF1B8BE60D008F2938 /* RBDuration.m */,
 			);
 			path = RBDateTime;
 			sourceTree = "<group>";
@@ -114,9 +118,11 @@
 			children = (
 				79C807CC1B8BE076008F2938 /* RBDateTimeTests.m */,
 				7926328D1B94E2F10093FAEA /* RBDateTimeBasicTests.m */,
-				79372C031B9587B100FBC121 /* RBDateTimeAddingTests.m */,
+				79372C031B9587B100FBC121 /* RBDateTimeOperationsTests.m */,
 				7926328F1B94F9B70093FAEA /* RBDateTimeTimeZoneTests.m */,
 				79372C081B9627CE00FBC121 /* RBDateTimeFormattingTests.m */,
+				79372C0B1B976E2400FBC121 /* RBDurationBasicTests.m */,
+				79372C0D1B979DB500FBC121 /* RBDurationOperationsTests.m */,
 				79C807C21B8BDFC2008F2938 /* Supporting Files */,
 			);
 			path = RBDateTimeTests;
@@ -220,7 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				79372C071B961F4500FBC121 /* RBDateTime+Formatting.m in Sources */,
-				79C807D01B8BE60D008F2938 /* RBTimeSpan.m in Sources */,
+				79C807D01B8BE60D008F2938 /* RBDuration.m in Sources */,
 				79C807B81B8BDFC2008F2938 /* RBDateTime.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -229,11 +235,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79C807D11B8BE60D008F2938 /* RBTimeSpan.m in Sources */,
-				79372C041B9587B100FBC121 /* RBDateTimeAddingTests.m in Sources */,
+				79372C0C1B976E2400FBC121 /* RBDurationBasicTests.m in Sources */,
+				79C807D11B8BE60D008F2938 /* RBDuration.m in Sources */,
+				79372C041B9587B100FBC121 /* RBDateTimeOperationsTests.m in Sources */,
 				7926328E1B94E2F10093FAEA /* RBDateTimeBasicTests.m in Sources */,
 				79372C0A1B96287E00FBC121 /* RBDateTime+Formatting.m in Sources */,
 				79372C091B9627CE00FBC121 /* RBDateTimeFormattingTests.m in Sources */,
+				79372C0E1B979DB500FBC121 /* RBDurationOperationsTests.m in Sources */,
 				792632901B94F9B70093FAEA /* RBDateTimeTimeZoneTests.m in Sources */,
 				79C807D21B8BE611008F2938 /* RBDateTime.m in Sources */,
 			);

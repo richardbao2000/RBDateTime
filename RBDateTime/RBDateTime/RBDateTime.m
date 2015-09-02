@@ -35,7 +35,7 @@ static NSCalendarUnit kValidCalendarUnits =
     NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond | NSCalendarUnitNanosecond |
     NSCalendarUnitCalendar | NSCalendarUnitTimeZone;
 
-const double kNanosecondsInMillisecond = 1000000;
+static double kNanosecondsInMillisecond = 1000000;
 
 + (void)initialize {
     _gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
@@ -83,36 +83,6 @@ const double kNanosecondsInMillisecond = 1000000;
     return self;
 }
 
-- (instancetype)initWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day {
-    return [self initWithYear:year month:month day:day hour:0 minute:0 second:0];
-}
-
-- (instancetype)initWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
-                        hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second {
-    return [self initWithYear:year month:month day:day
-                         hour:hour minute:minute second:second millisecond:0
-                     calendar:nil
-                     timeZone:nil];
-}
-
-- (instancetype)initWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
-                        hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second
-                    timeZone:(NSTimeZone *)timeZone {
-    return [self initWithYear:year month:month day:day
-                         hour:hour minute:minute second:second millisecond:0
-                     calendar:nil
-                     timeZone:timeZone];
-}
-
-- (instancetype)initWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
-                        hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second
-                    calendar:(NSCalendar *)calendar {
-    return [self initWithYear:year month:month day:day
-                         hour:hour minute:minute second:second millisecond:0
-                     calendar:calendar
-                     timeZone:nil];
-}
-
 - (instancetype)initWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
                         hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second
                  millisecond:(NSInteger)millisecond
@@ -140,49 +110,55 @@ const double kNanosecondsInMillisecond = 1000000;
 }
 
 + (instancetype)dateTimeWithNSDate:(NSDate *)date
-                      calendar:(NSCalendar *)calendar
-                      timezone:(NSTimeZone *)timeZone {
+                          calendar:(NSCalendar *)calendar
+                          timezone:(NSTimeZone *)timeZone {
     return [[RBDateTime alloc] initWithNSDate:date calendar:calendar timeZone:timeZone];
 }
 
 + (instancetype)dateTimeWithTimeIntervalSinceReferenceDate:(NSTimeInterval)timeIntervalSinceReferenceDate
-                                              calendar:(NSCalendar *)calendar
-                                              timezone:(NSTimeZone *)timeZone {
+                                                  calendar:(NSCalendar *)calendar
+                                                  timezone:(NSTimeZone *)timeZone {
     return [[RBDateTime alloc] initWithTimeIntervalSinceReferenceDate:timeIntervalSinceReferenceDate
                                                              calendar:calendar timeZone:timeZone];
 }
 
 + (instancetype)dateTimeWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day {
-    return [[RBDateTime alloc] initWithYear:year month:month day:day];
+    return [[RBDateTime alloc] initWithYear:year month:month day:day
+                                       hour:0 minute:0 second:0 millisecond:0
+                                   calendar:nil timeZone:nil];
 }
 
 + (instancetype)dateTimeWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
-                        hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second {
+                            hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second {
     return [[RBDateTime alloc] initWithYear:year month:month day:day
-                                       hour:hour minute:minute second:second];
+                                       hour:hour minute:minute second:second millisecond:0
+                                   calendar:nil
+                                   timeZone:nil];
 }
 
 + (instancetype)dateTimeWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
-                        hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second
-                    timeZone:(NSTimeZone *)timeZone {
+                            hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second
+                        timeZone:(NSTimeZone *)timeZone {
     return [[RBDateTime alloc] initWithYear:year month:month day:day
-                                       hour:hour minute:minute second:second
+                                       hour:hour minute:minute second:second millisecond:0
+                                   calendar:nil
                                    timeZone:timeZone];
 }
 
 + (instancetype)dateTimeWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
-                        hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second
-                    calendar:(NSCalendar *)calendar {
+                            hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second
+                        calendar:(NSCalendar *)calendar {
     return [[RBDateTime alloc] initWithYear:year month:month day:day
-                                       hour:hour minute:minute second:second
-                                   calendar:calendar];
+                                       hour:hour minute:minute second:second millisecond:0
+                                   calendar:calendar
+                                   timeZone:nil];
 }
 
 + (instancetype)dateTimeWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
-                        hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second
-                 millisecond:(NSInteger)millisecond
-                    calendar:(NSCalendar *)calendar
-                    timeZone:(NSTimeZone *)timeZone {
+                            hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second
+                     millisecond:(NSInteger)millisecond
+                        calendar:(NSCalendar *)calendar
+                        timeZone:(NSTimeZone *)timeZone {
     return [[RBDateTime alloc] initWithYear:year month:month day:day
                                        hour:hour minute:minute second:second millisecond:millisecond
                                    calendar:calendar timeZone:timeZone];
@@ -256,7 +232,7 @@ const double kNanosecondsInMillisecond = 1000000;
 
 
 
-#pragma mark - Properties
+#pragma mark - Components
 
 - (NSDate *)NSDate {
     if (_nsDateTime == nil) {
@@ -285,6 +261,10 @@ const double kNanosecondsInMillisecond = 1000000;
     return _components.timeZone;
 }
 
+
+
+#pragma mark - Convenient Computation
+
 - (NSTimeInterval)timeIntervalSinceReferenceDate {
     return _nsDateTime.timeIntervalSinceReferenceDate;
 }
@@ -303,12 +283,17 @@ const double kNanosecondsInMillisecond = 1000000;
 
 - (RBDateTime *)date {
     NSDateComponents *comps = [_components copy];
+
     comps.hour = 0;
     comps.minute = 0;
     comps.second = 0;
     comps.nanosecond = 0;
 
-    return [[RBDateTime alloc] _initWithComponents:comps requireValidation:NO];
+    return [[RBDateTime alloc] _initWithComponents:comps requireValidation:YES];
+}
+
+- (RBDuration *)timeOfDay {
+    return [RBDuration durationFromDate:self.date toDate:self];
 }
 
 - (NSInteger)dayOfWeek {
@@ -362,6 +347,18 @@ const double kNanosecondsInMillisecond = 1000000;
     return [[RBDateTime alloc] _initWithComponents:newComps requireValidation:YES];
 }
 
+- (instancetype)dateTimeByAddingDuration:(RBDuration *)duration {
+    return [self dateTimeByAddingYears:0 months:0 days:duration.days
+                                 hours:duration.hours minutes:duration.minutes seconds:duration.seconds
+                          milliseconds:duration.milliseconds];
+}
+
+- (instancetype)dateTimeBySubtractingDuration:(RBDuration *)duration {
+    return [self dateTimeByAddingYears:0 months:0 days:-duration.days
+                                 hours:-duration.hours minutes:-duration.minutes seconds:-duration.seconds
+                          milliseconds:-duration.milliseconds];
+}
+
 - (void)addYears:(NSInteger)years months:(NSInteger)months days:(NSInteger)days {
     [self addYears:years months:months days:days hours:0 minutes:0 seconds:0 milliseconds:0];
 }
@@ -386,6 +383,30 @@ const double kNanosecondsInMillisecond = 1000000;
     _components.nanosecond += milliseconds * kNanosecondsInMillisecond;
 
     [self _validateComponents];
+}
+
+- (void)addDuration:(RBDuration *)duration {
+    [self addYears:0 months:0 days:duration.days
+             hours:duration.hours minutes:duration.minutes seconds:duration.seconds
+      milliseconds:duration.milliseconds];
+}
+
+- (void)subtractDuration:(RBDuration *)duration {
+    [self addYears:0 months:0 days:-duration.days
+             hours:-duration.hours minutes:-duration.minutes seconds:-duration.seconds
+      milliseconds:-duration.milliseconds];
+}
+
+- (BOOL)equalsTo:(RBDateTime *)dateTime {
+    return self.timeIntervalSinceReferenceDate == dateTime.timeIntervalSinceReferenceDate;
+}
+
+- (BOOL)isEqual:(id)object {
+    if ([object isKindOfClass:[RBDateTime class]]) {
+        return [self equalsTo:object];
+    } else {
+        return [super isEqual:object];
+    }
 }
 
 

@@ -57,13 +57,13 @@ const double kNanosecondsInMilliseconds = 1000000;
                                    nanosecond:12 * kNanosecondsInMilliseconds];
     RBDateTime *date = [[RBDateTime alloc] initWithNSDate:sysDate calendar:_gregorian timeZone:nil];
 
-    XCTAssertEqual(date.year, 2015);
-    XCTAssertEqual(date.month, 1);
-    XCTAssertEqual(date.day, 6);
-    XCTAssertEqual(date.hour, 9);
-    XCTAssertEqual(date.minute, 41);
-    XCTAssertEqual(date.second, 6);
-    XCTAssertEqual(date.millisecond, 12);
+    XCTAssertEqual(date.year,           2015);
+    XCTAssertEqual(date.month,          1);
+    XCTAssertEqual(date.day,            6);
+    XCTAssertEqual(date.hour,           9);
+    XCTAssertEqual(date.minute,         41);
+    XCTAssertEqual(date.second,         6);
+    XCTAssertEqual(date.millisecond,    12);
     XCTAssertEqualWithAccuracy(date.timeIntervalSinceReferenceDate, sysDate.timeIntervalSinceReferenceDate, 1);
 }
 
@@ -85,71 +85,69 @@ const double kNanosecondsInMilliseconds = 1000000;
 }
 
 - (void)testInitWithYearMonthDayHourMinuteSecondMillisecondCalendarTimeZone {
-    RBDateTime *ordinary = [[RBDateTime alloc] initWithYear:2015 month:1 day:6
-                                                       hour:9 minute:41 second:6 millisecond:12
-                                                   calendar:nil
-                                                   timeZone:nil];
-    XCTAssertEqual(ordinary.year, 2015);
-    XCTAssertEqual(ordinary.month, 1);
-    XCTAssertEqual(ordinary.day, 6);
-    XCTAssertEqual(ordinary.hour, 9);
-    XCTAssertEqual(ordinary.minute, 41);
-    XCTAssertEqual(ordinary.second, 6);
-    XCTAssertEqual(ordinary.millisecond, 12);
+    RBDateTime *date = [[RBDateTime alloc] initWithYear:2015 month:1 day:6
+                                                   hour:9 minute:41 second:6 millisecond:12
+                                               calendar:nil
+                                               timeZone:nil];
+    XCTAssertEqual(date.year,           2015);
+    XCTAssertEqual(date.month,          1);
+    XCTAssertEqual(date.day,            6);
+    XCTAssertEqual(date.hour,           9);
+    XCTAssertEqual(date.minute,         41);
+    XCTAssertEqual(date.second,         6);
+    XCTAssertEqual(date.millisecond,    12);
 
     RBDateTime *dayOverflow = [[RBDateTime alloc] initWithYear:2015 month:2 - 1 day:14 + 31 - 1
                                                           hour:9 + 24 - 1 minute:41 + 60 - 1 second:6 + 60 millisecond:12
                                                       calendar:nil
                                                       timeZone:nil];
-    XCTAssertEqual(dayOverflow.year, 2015);
-    XCTAssertEqual(dayOverflow.month, 2);
-    XCTAssertEqual(dayOverflow.day, 14);
-    XCTAssertEqual(dayOverflow.hour, 9);
-    XCTAssertEqual(dayOverflow.minute, 41);
-    XCTAssertEqual(dayOverflow.second, 6);
+    XCTAssertEqual(dayOverflow.year,        2015);
+    XCTAssertEqual(dayOverflow.month,       2);
+    XCTAssertEqual(dayOverflow.day,         14);
+    XCTAssertEqual(dayOverflow.hour,        9);
+    XCTAssertEqual(dayOverflow.minute,      41);
+    XCTAssertEqual(dayOverflow.second,      6);
     XCTAssertEqual(dayOverflow.millisecond, 12);
 }
 
 - (void)testInitWithYearMonthDay {
-    RBDateTime *date = [[RBDateTime alloc] initWithYear:2015 month:1 day:6];
+    RBDateTime *date = [RBDateTime dateTimeWithYear:2015 month:1 day:6];
 
-    XCTAssertEqual(date.year, 2015);
-    XCTAssertEqual(date.month, 1);
-    XCTAssertEqual(date.day, 6);
+    XCTAssertEqual(date.year,   2015);
+    XCTAssertEqual(date.month,  1);
+    XCTAssertEqual(date.day,    6);
 }
 
 - (void)testInitWithYearMonthDayHourMinuteSecond {
-    RBDateTime *date = [[RBDateTime alloc] initWithYear:2015 month:1 day:6
-                                                   hour:9 minute:41 second:6];
-    XCTAssertEqual(date.year, 2015);
-    XCTAssertEqual(date.month, 1);
-    XCTAssertEqual(date.day, 6);
-    XCTAssertEqual(date.hour, 9);
+    RBDateTime *date = [RBDateTime dateTimeWithYear:2015 month:1 day:6 hour:9 minute:41 second:6];
+
+    XCTAssertEqual(date.year,   2015);
+    XCTAssertEqual(date.month,  1);
+    XCTAssertEqual(date.day,    6);
+    XCTAssertEqual(date.hour,   9);
     XCTAssertEqual(date.minute, 41);
     XCTAssertEqual(date.second, 6);
 }
 
 - (void)testInitWithYearMonthDayHourMinuteSecondTimeZone {
-    RBDateTime *date = [[RBDateTime alloc] initWithYear:2015 month:1 day:6
-                                                   hour:9 minute:41 second:6
-                                               timeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
-    XCTAssertEqual(date.year, 2015);
-    XCTAssertEqual(date.month, 1);
-    XCTAssertEqual(date.day, 6);
-    XCTAssertEqual(date.hour, 9);
+    RBDateTime *date = [RBDateTime dateTimeWithYear:2015 month:1 day:6 hour:9 minute:41 second:6
+                                           timeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+    XCTAssertEqual(date.year,   2015);
+    XCTAssertEqual(date.month,  1);
+    XCTAssertEqual(date.day,    6);
+    XCTAssertEqual(date.hour,   9);
     XCTAssertEqual(date.minute, 41);
     XCTAssertEqual(date.second, 6);
     XCTAssertEqual(date.timeZone.secondsFromGMT, 0);
 }
 
 - (void)testInitWithYearMonthDayHourMinuteSecondCalendar {
-    RBDateTime *date = [[RBDateTime alloc] initWithYear:2015 month:1 day:6
-                                                   hour:9 minute:41 second:6
-                                               calendar:[NSCalendar calendarWithIdentifier:NSCalendarIdentifierHebrew]];
-    XCTAssertEqual(date.year, 2015);
-    XCTAssertEqual(date.month, 1);
-    XCTAssertEqual(date.day, 6);
-    XCTAssertEqual(date.hour, 9);
+    RBDateTime *date = [RBDateTime dateTimeWithYear:2015 month:1 day:6 hour:9 minute:41 second:6
+                                           calendar:[NSCalendar calendarWithIdentifier:NSCalendarIdentifierHebrew]];
+    XCTAssertEqual(date.year,   2015);
+    XCTAssertEqual(date.month,  1);
+    XCTAssertEqual(date.day,    6);
+    XCTAssertEqual(date.hour,   9);
     XCTAssertEqual(date.minute, 41);
     XCTAssertEqual(date.second, 6);
     XCTAssertEqual(date.calendar.calendarIdentifier, NSCalendarIdentifierHebrew);
@@ -177,25 +175,37 @@ const double kNanosecondsInMilliseconds = 1000000;
 }
 
 - (void)testDate {
-    RBDateTime *date = [[[RBDateTime alloc] initWithYear:2015 month:1 day:6
-                                                    hour:9 minute:41 second:6] date];
-    XCTAssertEqual(date.year, 2015);
-    XCTAssertEqual(date.month, 1);
-    XCTAssertEqual(date.day, 6);
-    XCTAssertEqual(date.hour, 0);
+    RBDateTime *date = [[RBDateTime dateTimeWithYear:2015 month:1 day:6 hour:9 minute:41 second:6] date];
+    
+    XCTAssertEqual(date.year,   2015);
+    XCTAssertEqual(date.month,  1);
+    XCTAssertEqual(date.day,    6);
+    XCTAssertEqual(date.hour,   0);
     XCTAssertEqual(date.minute, 0);
     XCTAssertEqual(date.second, 0);
 }
 
+- (void)testTimeOfDay {
+    RBDateTime *date = [RBDateTime dateTimeWithYear:2015 month:1 day:6 hour:9 minute:41 second:6];
+    RBDuration *timeOfDay = date.timeOfDay;
+
+    XCTAssertEqual(timeOfDay.days,      0);
+    XCTAssertEqual(timeOfDay.hours,     9);
+    XCTAssertEqual(timeOfDay.minutes,   41);
+    XCTAssertEqual(timeOfDay.seconds,   6);
+
+    RBDuration *duration = [RBDuration durationWithHours:9 minutes:41 seconds:6];
+
+    XCTAssert([timeOfDay equalsTo:duration]);
+}
+
 - (void)testDayOfWeek {
-    RBDateTime *date = [[RBDateTime alloc] initWithYear:2015 month:1 day:6
-                                                   hour:9 minute:41 second:6];
+    RBDateTime *date = [RBDateTime dateTimeWithYear:2015 month:1 day:6 hour:9 minute:41 second:6];
     XCTAssertEqual([date dayOfWeek], 3); // Tuesday
 }
 
 - (void)testDayOfYear {
-    RBDateTime *date = [[RBDateTime alloc] initWithYear:2015 month:6 day:12
-                                                   hour:9 minute:41 second:6];
+    RBDateTime *date = [RBDateTime dateTimeWithYear:2015 month:6 day:12 hour:9 minute:41 second:6];
     XCTAssertEqual([date dayOfYear], 31 + 28 + 31 + 30 + 31 + 12);
 }
 
