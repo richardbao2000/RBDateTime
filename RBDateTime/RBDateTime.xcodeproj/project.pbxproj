@@ -59,7 +59,6 @@
 		79C807B71B8BDFC2008F2938 /* RBDateTime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RBDateTime.m; sourceTree = "<group>"; };
 		79C807BD1B8BDFC2008F2938 /* RBDateTimeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RBDateTimeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		79C807C31B8BDFC2008F2938 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		79C807CC1B8BE076008F2938 /* RBDateTimeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBDateTimeTests.m; sourceTree = "<group>"; };
 		79C807CE1B8BE60D008F2938 /* RBDuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBDuration.h; sourceTree = "<group>"; };
 		79C807CF1B8BE60D008F2938 /* RBDuration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBDuration.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -116,7 +115,6 @@
 		79C807C11B8BDFC2008F2938 /* RBDateTimeTests */ = {
 			isa = PBXGroup;
 			children = (
-				79C807CC1B8BE076008F2938 /* RBDateTimeTests.m */,
 				7926328D1B94E2F10093FAEA /* RBDateTimeBasicTests.m */,
 				79372C031B9587B100FBC121 /* RBDateTimeOperationsTests.m */,
 				7926328F1B94F9B70093FAEA /* RBDateTimeTimeZoneTests.m */,
