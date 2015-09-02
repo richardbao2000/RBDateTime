@@ -36,10 +36,36 @@
 
 - (instancetype)initWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
                         hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second
-                 millisecond:(NSInteger)millisecond
                     calendar:(NSCalendar *)calendar;
 
 - (instancetype)initWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
+                        hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second
+                 millisecond:(NSInteger)millisecond
+                    calendar:(NSCalendar *)calendar
+                    timeZone:(NSTimeZone *)timeZone;
+
++ (instancetype)dateTimeWithNSDate:(NSDate *)date
+                      calendar:(NSCalendar *)calendar
+                      timezone:(NSTimeZone *)timeZone;
+
++ (instancetype)dateTimeWithTimeIntervalSinceReferenceDate:(NSTimeInterval)timeIntervalSinceReferenceDate
+                                              calendar:(NSCalendar *)calendar
+                                              timezone:(NSTimeZone *)timeZone;
+
++ (instancetype)dateTimeWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day;
+
++ (instancetype)dateTimeWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
+                        hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second;
+
++ (instancetype)dateTimeWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
+                        hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second
+                    timeZone:(NSTimeZone *)timeZone;
+
++ (instancetype)dateTimeWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
+                        hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second
+                    calendar:(NSCalendar *)calendar;
+
++ (instancetype)dateTimeWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
                         hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second
                  millisecond:(NSInteger)millisecond
                     calendar:(NSCalendar *)calendar
@@ -50,34 +76,6 @@
 
 + (instancetype)today;
 + (instancetype)todayUTC;
-
-+ (instancetype)dateWithNSDate:(NSDate *)date
-                      calendar:(NSCalendar *)calendar
-                      timezone:(NSTimeZone *)timeZone;
-
-+ (instancetype)dateWithTimeIntervalSinceReferenceDate:(NSTimeInterval)timeIntervalSinceReferenceDate
-                                              calendar:(NSCalendar *)calendar
-                                              timezone:(NSTimeZone *)timeZone;
-
-+ (instancetype)dateWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day;
-
-+ (instancetype)dateWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
-                        hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second;
-
-+ (instancetype)dateWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
-                        hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second
-                    timeZone:(NSTimeZone *)timeZone;
-
-+ (instancetype)dateWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
-                        hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second
-                 millisecond:(NSInteger)millisecond
-                    calendar:(NSCalendar *)calendar;
-
-+ (instancetype)dateWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
-                        hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second
-                 millisecond:(NSInteger)millisecond
-                    calendar:(NSCalendar *)calendar
-                    timeZone:(NSTimeZone *)timeZone;
 
 
 
@@ -97,6 +95,7 @@
 @property (nonatomic, readonly) NSTimeZone *timeZone;
 
 @property (nonatomic, readonly) NSTimeInterval timeIntervalSinceReferenceDate;
+@property (nonatomic, readonly) NSTimeInterval unixTimestamp;
 
 @property (nonatomic, readonly) BOOL isLeapYear;
 @property (nonatomic, readonly) BOOL isLeapMonth;
@@ -115,7 +114,7 @@
 
 
 
-#pragma mark - Constructing by altering
+#pragma mark - Adding and Subtracting
 
 - (instancetype)dateTimeByAddingYears:(NSInteger)years months:(NSInteger)months days:(NSInteger)days;
 - (instancetype)dateTimeByAddingDays:(NSInteger)days;
@@ -128,6 +127,14 @@
 //- (instancetype)dateTimeByAddingTimeSpan:(RBTimeSpan *)timeSpan;
 //- (instancetype)dateTimeBySubtractingTimeSpan:(RBTimeSpan *)timeSpan;
 
+- (void)addYears:(NSInteger)years months:(NSInteger)months days:(NSInteger)days;
+- (void)addDays:(NSInteger)days;
+- (void)addHours:(NSInteger)hours minutes:(NSInteger)minutes seconds:(NSInteger)seconds;
+
+- (void)addYears:(NSInteger)years months:(NSInteger)months days:(NSInteger)days
+                   hours:(NSInteger)hours minutes:(NSInteger)minutes seconds:(NSInteger)seconds
+            milliseconds:(NSInteger)milliseconds;
+
 
 
 #pragma mark - Time Zone Converting
@@ -137,12 +144,66 @@
 - (instancetype)dateTimeInTimeZone:(NSTimeZone *)targetTimeZone;
 
 
+@end
 
+
+
+@interface RBDateTime (Formatting)
 
 #pragma mark - Formatting
 
+- (NSString *)localizedStringWithDateStyle:(NSDateFormatterStyle)dateStyle
+                                 timeStyle:(NSDateFormatterStyle)timeStyle;
+
+- (NSString *)localizedStringWithDateStyle:(NSDateFormatterStyle)dateStyle
+                                 timeStyle:(NSDateFormatterStyle)timeStyle
+                                  timeZone:(NSTimeZone *)timeZone;
+
+- (NSString *)localizedStringWithDateStyle:(NSDateFormatterStyle)dateStyle
+                                 timeStyle:(NSDateFormatterStyle)timeStyle
+                                  timeZone:(NSTimeZone *)timeZone
+                                    locale:(NSLocale *)locale;
+
+- (NSString *)localizedStringWithFormatTemplate:(NSString *)formatTemplate;
+
+- (NSString *)localizedStringWithFormatTemplate:(NSString *)formatTemplate
+                                       timeZone:(NSTimeZone *)timeZone;
+
+- (NSString *)localizedStringWithFormatTemplate:(NSString *)formatTemplate
+                                       timeZone:(NSTimeZone *)timeZone
+                                         locale:(NSLocale *)locale;
+
+- (NSString *)localizedStringWithFormat:(NSString *)format;
+
+- (NSString *)localizedStringWithFormat:(NSString *)format
+                               timeZone:(NSTimeZone *)timeZone;
+
+- (NSString *)localizedStringWithFormat:(NSString *)format
+                               timeZone:(NSTimeZone *)timeZone
+                                 locale:(NSLocale *)locale;
+
++ (void)setDefaultDateStyle:(NSDateFormatterStyle)dateStyle;
++ (void)setDefaultTimeStyle:(NSDateFormatterStyle)timeStyle;
++ (void)setDefaultDateTimeFormatTemplate:(NSString *)dateTimeFormatTemplate;
++ (void)setDefaultDateTimeFormat:(NSString *)dateTimeFormat;
+
+- (NSString *)localizedDate;
+- (NSString *)localizedTime;
+- (NSString *)localizedString;
+
+- (NSString *)formattedUnixTimestamp;
+- (NSString *)formattedUnixTimestampUTC;
+
 
 #pragma mark - Parsing
+
++ (instancetype)dateTimeByParsingString:(NSString *)string withFormat:(NSString *)format;
++ (instancetype)dateTimeByParsingString:(NSString *)string withFormat:(NSString *)format
+                               timeZone:(NSTimeZone *)timeZone;
+
++ (instancetype)dateTimeByParsingUnixTimestamp:(NSString *)unixTimestamp;
++ (instancetype)dateTimeByParsingUnixTimestampUTC:(NSString *)unixTimestamp;
++ (instancetype)dateTimeByParsingUnixTimestamp:(NSString *)unixTimestamp timeZone:(NSTimeZone *)timeZone;
 
 
 @end

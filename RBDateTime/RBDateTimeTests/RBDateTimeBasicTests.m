@@ -64,7 +64,7 @@ const double kNanosecondsInMilliseconds = 1000000;
     XCTAssertEqual(date.minute, 41);
     XCTAssertEqual(date.second, 6);
     XCTAssertEqual(date.millisecond, 12);
-    XCTAssertEqual(date.timeIntervalSinceReferenceDate, sysDate.timeIntervalSinceReferenceDate);
+    XCTAssertEqualWithAccuracy(date.timeIntervalSinceReferenceDate, sysDate.timeIntervalSinceReferenceDate, 1);
 }
 
 - (void)testInitWithTimeIntervalSinceReferenceDate {
@@ -84,7 +84,7 @@ const double kNanosecondsInMilliseconds = 1000000;
     XCTAssertEqual(now.millisecond, round(sysComps.nanosecond / kNanosecondsInMilliseconds));
 }
 
-- (void)testInitWithYearMonthDayHourMinuteSecondNanosecond {
+- (void)testInitWithYearMonthDayHourMinuteSecondMillisecondCalendarTimeZone {
     RBDateTime *ordinary = [[RBDateTime alloc] initWithYear:2015 month:1 day:6
                                                        hour:9 minute:41 second:6 millisecond:12
                                                    calendar:nil
@@ -110,6 +110,51 @@ const double kNanosecondsInMilliseconds = 1000000;
     XCTAssertEqual(dayOverflow.millisecond, 12);
 }
 
+- (void)testInitWithYearMonthDay {
+    RBDateTime *date = [[RBDateTime alloc] initWithYear:2015 month:1 day:6];
+
+    XCTAssertEqual(date.year, 2015);
+    XCTAssertEqual(date.month, 1);
+    XCTAssertEqual(date.day, 6);
+}
+
+- (void)testInitWithYearMonthDayHourMinuteSecond {
+    RBDateTime *date = [[RBDateTime alloc] initWithYear:2015 month:1 day:6
+                                                   hour:9 minute:41 second:6];
+    XCTAssertEqual(date.year, 2015);
+    XCTAssertEqual(date.month, 1);
+    XCTAssertEqual(date.day, 6);
+    XCTAssertEqual(date.hour, 9);
+    XCTAssertEqual(date.minute, 41);
+    XCTAssertEqual(date.second, 6);
+}
+
+- (void)testInitWithYearMonthDayHourMinuteSecondTimeZone {
+    RBDateTime *date = [[RBDateTime alloc] initWithYear:2015 month:1 day:6
+                                                   hour:9 minute:41 second:6
+                                               timeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+    XCTAssertEqual(date.year, 2015);
+    XCTAssertEqual(date.month, 1);
+    XCTAssertEqual(date.day, 6);
+    XCTAssertEqual(date.hour, 9);
+    XCTAssertEqual(date.minute, 41);
+    XCTAssertEqual(date.second, 6);
+    XCTAssertEqual(date.timeZone.secondsFromGMT, 0);
+}
+
+- (void)testInitWithYearMonthDayHourMinuteSecondCalendar {
+    RBDateTime *date = [[RBDateTime alloc] initWithYear:2015 month:1 day:6
+                                                   hour:9 minute:41 second:6
+                                               calendar:[NSCalendar calendarWithIdentifier:NSCalendarIdentifierHebrew]];
+    XCTAssertEqual(date.year, 2015);
+    XCTAssertEqual(date.month, 1);
+    XCTAssertEqual(date.day, 6);
+    XCTAssertEqual(date.hour, 9);
+    XCTAssertEqual(date.minute, 41);
+    XCTAssertEqual(date.second, 6);
+    XCTAssertEqual(date.calendar.calendarIdentifier, NSCalendarIdentifierHebrew);
+}
+
 - (void)testPerformance_init {
     [self measureBlock:^{
         for (int i = 0; i < 1000; i++) {
@@ -131,6 +176,29 @@ const double kNanosecondsInMilliseconds = 1000000;
     }];
 }
 
+- (void)testDate {
+    RBDateTime *date = [[[RBDateTime alloc] initWithYear:2015 month:1 day:6
+                                                    hour:9 minute:41 second:6] date];
+    XCTAssertEqual(date.year, 2015);
+    XCTAssertEqual(date.month, 1);
+    XCTAssertEqual(date.day, 6);
+    XCTAssertEqual(date.hour, 0);
+    XCTAssertEqual(date.minute, 0);
+    XCTAssertEqual(date.second, 0);
+}
+
+- (void)testDayOfWeek {
+    RBDateTime *date = [[RBDateTime alloc] initWithYear:2015 month:1 day:6
+                                                   hour:9 minute:41 second:6];
+    XCTAssertEqual([date dayOfWeek], 3); // Tuesday
+}
+
+- (void)testDayOfYear {
+    RBDateTime *date = [[RBDateTime alloc] initWithYear:2015 month:6 day:12
+                                                   hour:9 minute:41 second:6];
+    XCTAssertEqual([date dayOfYear], 31 + 28 + 31 + 30 + 31 + 12);
+}
+
 - (void)testLeapYear {
     XCTAssert([RBDateTime isLeapYear:1990] == NO);
     XCTAssert([RBDateTime isLeapYear:2000] == YES);
@@ -139,7 +207,26 @@ const double kNanosecondsInMilliseconds = 1000000;
     XCTAssert([RBDateTime isLeapYear:2003] == NO);
     XCTAssert([RBDateTime isLeapYear:2004] == YES);
 
-    // TODO: Test -isLeapYear and -isLeapMonth after convenient initializers are ready.
+    XCTAssert([RBDateTime dateTimeWithYear:1990 month:1 day:1].isLeapYear == NO);
+    XCTAssert([RBDateTime dateTimeWithYear:2000 month:1 day:1].isLeapYear == YES);
+    XCTAssert([RBDateTime dateTimeWithYear:2001 month:1 day:1].isLeapYear == NO);
+    XCTAssert([RBDateTime dateTimeWithYear:2002 month:1 day:1].isLeapYear == NO);
+    XCTAssert([RBDateTime dateTimeWithYear:2003 month:1 day:1].isLeapYear == NO);
+    XCTAssert([RBDateTime dateTimeWithYear:2004 month:1 day:1].isLeapYear == YES);
+
+    XCTAssert([RBDateTime dateTimeWithYear:1990 month:2 day:1].isLeapMonth == NO);
+    XCTAssert([RBDateTime dateTimeWithYear:2000 month:2 day:1].isLeapMonth == YES);
+    XCTAssert([RBDateTime dateTimeWithYear:2001 month:2 day:1].isLeapMonth == NO);
+    XCTAssert([RBDateTime dateTimeWithYear:2002 month:2 day:1].isLeapMonth == NO);
+    XCTAssert([RBDateTime dateTimeWithYear:2003 month:2 day:1].isLeapMonth == NO);
+    XCTAssert([RBDateTime dateTimeWithYear:2004 month:2 day:1].isLeapMonth == YES);
+
+    XCTAssert([RBDateTime dateTimeWithYear:1990 month:1 day:1].isLeapMonth == NO);
+    XCTAssert([RBDateTime dateTimeWithYear:2000 month:3 day:1].isLeapMonth == NO);
+    XCTAssert([RBDateTime dateTimeWithYear:2001 month:4 day:1].isLeapMonth == NO);
+    XCTAssert([RBDateTime dateTimeWithYear:2002 month:5 day:1].isLeapMonth == NO);
+    XCTAssert([RBDateTime dateTimeWithYear:2003 month:6 day:1].isLeapMonth == NO);
+    XCTAssert([RBDateTime dateTimeWithYear:2004 month:7 day:1].isLeapMonth == NO);
 }
 
 
