@@ -36,7 +36,7 @@
     NSDateComponents *_components;
 }
 
-- (instancetype)_initWithComponents:(NSDateComponents *)components requireValidation:(BOOL)requireValidation;
+- (instancetype)_initWithComponents:(NSDateComponents *)components requireValidation:(BOOL)requireValidation NS_DESIGNATED_INITIALIZER;
 
 @end
 
@@ -417,7 +417,11 @@ static double kNanosecondsInMillisecond = 1000000;
 }
 
 - (BOOL)equalsTo:(RBDateTime *)dateTime {
-    return self.timeIntervalSinceReferenceDate == dateTime.timeIntervalSinceReferenceDate;
+    if (dateTime != nil) {
+        return self.timeIntervalSinceReferenceDate == dateTime.timeIntervalSinceReferenceDate;
+    } else {
+        return NO;
+    }
 }
 
 - (BOOL)isEqual:(id)object {

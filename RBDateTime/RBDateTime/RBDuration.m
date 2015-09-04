@@ -182,7 +182,9 @@ static double kTimeIntervalForDay           = 60 * 60 * 24;
 }
 
 + (NSComparisonResult)compare:(RBDuration *)duration1 to:(RBDuration *)duration2 {
-    double difference = duration1.timeInterval - duration2.timeInterval;
+    NSTimeInterval time1 = duration1 != nil ? duration1.timeInterval : 0;
+    NSTimeInterval time2 = duration2 != nil ? duration2.timeInterval : 0;
+    double difference = time1 - time2;
 
     if (difference < 0) {
         return NSOrderedAscending;
@@ -198,7 +200,11 @@ static double kTimeIntervalForDay           = 60 * 60 * 24;
 }
 
 - (BOOL)equalsTo:(RBDuration *)duration {
-    return fabs(self.timeInterval - duration.timeInterval) < kTimeIntervalForMillisecond;
+    if (duration != nil) {
+        return fabs(self.timeInterval - duration.timeInterval) < kTimeIntervalForMillisecond;
+    } else {
+        return NO;
+    }
 }
 
 - (BOOL)isEqual:(id)object {
