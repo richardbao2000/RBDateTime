@@ -44,10 +44,10 @@ static double kTimeIntervalForDay           = 60 * 60 * 24;
 
 #pragma mark - Initializers
 
-- (instancetype)initWithTimeInterval:(NSTimeInterval)timeInterval {
+- (instancetype)initWithTimeInterval:(NSTimeInterval)seconds {
     self = [super init];
     if (self) {
-        _timeInterval = timeInterval;
+        _timeInterval = seconds;
     }
 
     return self;
@@ -173,7 +173,7 @@ static double kTimeIntervalForDay           = 60 * 60 * 24;
     _timeInterval -= duration.timeInterval;
 }
 
-- (instancetype)negativeDuration {
+- (instancetype)negatedDuration {
     return [[RBDuration alloc] initWithTimeInterval:-self.timeInterval];
 }
 

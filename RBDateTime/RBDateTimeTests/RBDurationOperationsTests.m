@@ -117,7 +117,7 @@ static NSTimeZone *UtcTime = nil;
     RBDuration *positive = [RBDuration durationWithDays:1 hours:9 minutes:41 seconds:6 milliseconds:12];
     RBDuration *negative = [RBDuration durationWithDays:-1 hours:-9 minutes:-41 seconds:-6 milliseconds:-12];
 
-    RBDuration *negated = [positive negativeDuration];
+    RBDuration *negated = [positive negatedDuration];
 
     XCTAssertEqual(negated.timeInterval, negative.timeInterval);
 

@@ -337,8 +337,10 @@
     milliseconds:(NSInteger)milliseconds;
 
 /// Adds the value of the given @c RBDuration to the value of this instance.
+/// @param  duration        The specified duration to add.
 - (void)addDuration:(RBDuration *)duration;
 /// Subtracts the value of the given @c RBDuration to the value of this instance.
+/// @param  duration        The specified duration to subtract.
 - (void)subtractDuration:(RBDuration *)duration;
 
 /// Returns a Boolean value that indicates whether the given date time equals to this instance.
