@@ -81,12 +81,12 @@ static double kNanosecondsInMillisecond = 1000000;
     return self;
 }
 
-- (instancetype)initWithTimeIntervalSinceReferenceDate:(NSTimeInterval)timeIntervalSinceReferenceDate
+- (instancetype)initWithTimeIntervalSinceReferenceDate:(NSTimeInterval)seconds
                                               calendar:(NSCalendar *)calendar
                                               timeZone:(NSTimeZone *)timeZone {
     self = [super init];
     if (self) {
-        _nsDateTime = [NSDate dateWithTimeIntervalSinceReferenceDate:timeIntervalSinceReferenceDate];
+        _nsDateTime = [NSDate dateWithTimeIntervalSinceReferenceDate:seconds];
         _components = [NSDateComponents new];
 
         self.calendar = calendar;

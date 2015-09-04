@@ -36,7 +36,7 @@
                       calendar:(NSCalendar *)calendar
                       timeZone:(NSTimeZone *)timeZone;
 
-- (instancetype)initWithTimeIntervalSinceReferenceDate:(NSTimeInterval)timeIntervalSinceReferenceDate
+- (instancetype)initWithTimeIntervalSinceReferenceDate:(NSTimeInterval)seconds
                                               calendar:(NSCalendar *)calendar
                                               timeZone:(NSTimeZone *)timeZone;
 
