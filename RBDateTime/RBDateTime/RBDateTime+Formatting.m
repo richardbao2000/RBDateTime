@@ -133,8 +133,8 @@ static NSDateFormatter *_formatter = nil;
     _defaultDateTimeFormat = nil;
 }
 
-+ (void)setDefaultDateTimeFormatTemplate:(NSString *)dateTimeFormatTemplate {
-    _defaultDateTimeFormatTemplate = dateTimeFormatTemplate;
++ (void)setDefaultDateTimeFormatTemplate:(NSString *)formatTemplate {
+    _defaultDateTimeFormatTemplate = formatTemplate;
     _defaultDateTimeFormat = nil;
 }
 
