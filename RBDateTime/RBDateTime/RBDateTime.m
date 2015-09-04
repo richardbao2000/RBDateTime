@@ -437,8 +437,10 @@ static double kNanosecondsInMillisecond = 1000000;
 }
 
 - (instancetype)dateTimeInTimeZone:(NSTimeZone *)targetTimeZone {
-    NSDateComponents *newComps = [_components.calendar componentsInTimeZone:targetTimeZone
-                                                                   fromDate:_nsDateTime];
+    NSCalendar *tempCalendar = [_components.calendar copy];
+    tempCalendar.timeZone = targetTimeZone;
+    NSDateComponents *newComps = [tempCalendar components:kValidCalendarUnits fromDate:_nsDateTime];
+
     return [[RBDateTime alloc] _initWithComponents:newComps requireValidation:YES];
 }
 
