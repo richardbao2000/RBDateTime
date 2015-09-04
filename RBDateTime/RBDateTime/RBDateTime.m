@@ -61,7 +61,11 @@ static double kNanosecondsInMillisecond = 1000000;
 #pragma mark - Initializers
 
 - (instancetype)init {
-    return [self initWithNSDate:[NSDate new] calendar:nil timeZone:nil];
+    return [self initWithNSDate:[NSDate date]];
+}
+
+- (instancetype)initWithNSDate:(NSDate *)date {
+    return [self initWithNSDate:date calendar:nil timeZone:nil];
 }
 
 - (instancetype)initWithNSDate:(NSDate *)date

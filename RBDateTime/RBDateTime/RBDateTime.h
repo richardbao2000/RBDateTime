@@ -35,6 +35,11 @@
 /// expressed as the local time.
 - (instancetype)init;
 
+/// Initializes a new @c RBDateTime instance with a @c NSDate object in the local time zone.
+///
+/// @param  date            The @c NSDate object.
+- (instancetype)initWithNSDate:(NSDate *)date;
+
 /// Initializes a new @c RBDateTime instance with a @c NSDate object for the specified calendar in
 /// the specific time zone.
 ///
