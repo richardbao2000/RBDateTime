@@ -23,6 +23,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class RBDateTime;
 
 /// Represents a duration of time.
@@ -34,7 +36,7 @@
 /// Initializes a new @c RBDuration instance with given time interval.
 ///
 /// @param  seconds         The number of seconds.
-- (nonnull instancetype)initWithTimeInterval:(NSTimeInterval)seconds NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithTimeInterval:(NSTimeInterval)seconds NS_DESIGNATED_INITIALIZER;
 
 /// Initializes a new @c RBDuration instance with given numbers of days, hours, minutes, seconds, and
 /// milliseconds.
@@ -44,7 +46,7 @@
 /// @param  minutes         The number of minutes.
 /// @param  seconds         The number of seconds.
 /// @param  milliseconds    The number of milliseconds.
-- (nonnull instancetype)initWithDays:(NSInteger)days
+- (instancetype)initWithDays:(NSInteger)days
                        hours:(NSInteger)hours minutes:(NSInteger)minutes seconds:(NSInteger)seconds
                 milliseconds:(NSInteger)milliseconds NS_DESIGNATED_INITIALIZER;
 
@@ -56,7 +58,7 @@
 /// @param  minutes         The number of minutes.
 /// @param  seconds         The number of seconds.
 /// @param  milliseconds    The number of milliseconds.
-+ (nonnull instancetype)durationWithDays:(NSInteger)days
++ (instancetype)durationWithDays:(NSInteger)days
                            hours:(NSInteger)hours minutes:(NSInteger)minutes seconds:(NSInteger)seconds
                     milliseconds:(NSInteger)milliseconds;
 /// Creates a new @c RBDuration instance with given numbers of hours, minutes, and seconds.
@@ -64,30 +66,30 @@
 /// @param  hours           The number of hours.
 /// @param  minutes         The number of minutes.
 /// @param  seconds         The number of seconds.
-+ (nonnull instancetype)durationWithHours:(NSInteger)hours minutes:(NSInteger)minutes seconds:(NSInteger)seconds;
++ (instancetype)durationWithHours:(NSInteger)hours minutes:(NSInteger)minutes seconds:(NSInteger)seconds;
 
 /// Creates a new @c RBDuration instance with a given number of days.
 /// @param  days            The number of days.
-+ (nonnull instancetype)durationWithDays:(NSInteger)days;
++ (instancetype)durationWithDays:(NSInteger)days;
 /// Creates a new @c RBDuration instance with a given number of hours.
 /// @param  hours           The number of hours.
-+ (nonnull instancetype)durationWithHours:(NSInteger)hours;
++ (instancetype)durationWithHours:(NSInteger)hours;
 /// Creates a new @c RBDuration instance with a given number of minutes.
 /// @param  minutes         The number of minutes.
-+ (nonnull instancetype)durationWithMinutes:(NSInteger)minutes;
++ (instancetype)durationWithMinutes:(NSInteger)minutes;
 /// Creates a new @c RBDuration instance with a given number of seconds.
 /// @param  seconds         The number of seconds.
-+ (nonnull instancetype)durationWithSeconds:(NSInteger)seconds;
++ (instancetype)durationWithSeconds:(NSInteger)seconds;
 /// Creates a new @c RBDuration instance with a given number of milliseconds.
 /// @param  milliseconds    The number of milliseconds.
-+ (nonnull instancetype)durationWithMilliseconds:(NSInteger)milliseconds;
++ (instancetype)durationWithMilliseconds:(NSInteger)milliseconds;
 
 /// Returns a @c RBDuration instance that is the difference between two given dates. A negative
 /// duration will be returned if the start date is later than the end date.
 ///
 /// @param  date1           The start date for the calculation.
 /// @param  date2           The end date for the calculation.
-+ (nonnull instancetype)durationFromDate:(nonnull RBDateTime *)date1 toDate:(nonnull RBDateTime *)date2;
++ (instancetype)durationFromDate:(RBDateTime *)date1 toDate:(RBDateTime *)date2;
 
 
 
@@ -128,20 +130,20 @@
 
 /// Returns a new @c RBDuration that adds the given duration to the value of this instance.
 /// @param  duration        The specific duration to add.
-- (nonnull instancetype)durationByAdding:(nonnull RBDuration *)duration;
+- (instancetype)durationByAdding:(RBDuration *)duration;
 /// Returns a new @c RBDuration that subtracts the given duration to the value of this instance.
 /// @param  duration        The specified duration to subtract.
-- (nonnull instancetype)durationBySubtracting:(nonnull RBDuration *)duration;
+- (instancetype)durationBySubtracting:(RBDuration *)duration;
 
 /// Adds the value of the given @c RBDuration to the value of this instance.
 /// @param  duration        The specified duration to add.
-- (void)add:(nonnull RBDuration *)duration;
+- (void)add:(RBDuration *)duration;
 /// Subtracts the value of the given @c RBDuration to the value of this instance.
 /// @param  duration        The specified duration to subtract.
-- (void)subtract:(nonnull RBDuration *)duration;
+- (void)subtract:(RBDuration *)duration;
 
 /// Returns a new @c RBDuration that is the negated value of this instance.
-- (nonnull instancetype)negatedDuration;
+- (instancetype)negatedDuration;
 /// Negates the value of this instance.
 - (void)negate;
 
@@ -150,18 +152,20 @@
 ///
 /// @param  duration1       The first duration to compare.
 /// @param  duration2       The second duration to compare.
-+ (NSComparisonResult)compare:(nonnull RBDuration *)duration1 to:(nonnull RBDuration *)duration2;
++ (NSComparisonResult)compare:(RBDuration *)duration1 to:(RBDuration *)duration2;
 /// Compares this instance to a given @c RBDuration instance and returns a @c NSComparisonResult
 /// that indicates whether this instance is shorter than, equal to, or longer than the given
 /// @c RBDuration instance.
 ///
 /// @param  duration        The other @RBDuration instance to compare with.
-- (NSComparisonResult)compareTo:(nonnull RBDuration *)duration;
+- (NSComparisonResult)compareTo:(RBDuration *)duration;
 
 /// Returns a Boolean value that indicates whether the given duration equals to this instance.
 ///
 /// @param  duration        The other @RBDuration instance to compare with.
-- (BOOL)equalsTo:(nonnull RBDuration *)duration;
+- (BOOL)equalsTo:(RBDuration *)duration;
 
 
 @end
+
+NS_ASSUME_NONNULL_END
