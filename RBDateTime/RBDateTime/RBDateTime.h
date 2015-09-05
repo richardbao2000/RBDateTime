@@ -386,7 +386,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param  dateStyle       A format style for the date. For possible values, see @c NSDateFormatterStyle.
 /// @param  timeStyle       A format style for the time. For possible values, see @c NSDateFormatterStyle.
 - (NSString *)localizedStringWithDateStyle:(NSDateFormatterStyle)dateStyle
-                                         timeStyle:(NSDateFormatterStyle)timeStyle;
+                                 timeStyle:(NSDateFormatterStyle)timeStyle;
 
 /// Returns string representation of this date using the specified date and time style
 /// in the specified time zone.
@@ -396,8 +396,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param  timeZone        The specified time zone used to express the time.
 ///                         The local time zone will be used if `nil` is passed.
 - (NSString *)localizedStringWithDateStyle:(NSDateFormatterStyle)dateStyle
-                                         timeStyle:(NSDateFormatterStyle)timeStyle
-                                          timeZone:(nullable NSTimeZone *)timeZone;
+                                 timeStyle:(NSDateFormatterStyle)timeStyle
+                                  timeZone:(nullable NSTimeZone *)timeZone;
 
 /// Returns string representation of this date formatted for the given locale
 /// using the specified date and time in the specified time zone.
@@ -409,9 +409,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param  locale          The locale that is used to format the date and time.
 ///                         The current locale will be used if `nil` is passed.
 - (NSString *)localizedStringWithDateStyle:(NSDateFormatterStyle)dateStyle
-                                         timeStyle:(NSDateFormatterStyle)timeStyle
-                                          timeZone:(nullable NSTimeZone *)timeZone
-                                            locale:(nullable NSLocale *)locale;
+                                 timeStyle:(NSDateFormatterStyle)timeStyle
+                                  timeZone:(nullable NSTimeZone *)timeZone
+                                    locale:(nullable NSLocale *)locale;
 
 /// Returns string representation of this date formatted for the current locale
 /// using the specified date and time format template.
@@ -432,7 +432,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param  timeZone        The specified time zone used to express the time.
 ///                         The local time zone will be used if `nil` is passed.
 - (NSString *)localizedStringWithFormatTemplate:(NSString *)formatTemplate
-                                               timeZone:(nullable NSTimeZone *)timeZone;
+                                       timeZone:(nullable NSTimeZone *)timeZone;
 
 /// Returns string representation of this date formatted for the given locale
 /// using the specified date and time format template in the specified time zone.
@@ -446,8 +446,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param  locale          The locale that is used to format the date and time.
 ///                         The current locale will be used if `nil` is passed.
 - (NSString *)localizedStringWithFormatTemplate:(NSString *)formatTemplate
-                                               timeZone:(nullable NSTimeZone *)timeZone
-                                                 locale:(nullable NSLocale *)locale;
+                                       timeZone:(nullable NSTimeZone *)timeZone
+                                         locale:(nullable NSLocale *)locale;
 
 /// Returns string representation of this date formatted for the current locale
 /// using the specified date and time format.
@@ -464,7 +464,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param  timeZone        The specified time zone used to express the date and time.
 ///                         The local time zone will be used if `nil` is passed.
 - (NSString *)localizedStringWithFormat:(NSString *)format
-                                       timeZone:(nullable NSTimeZone *)timeZone;
+                               timeZone:(nullable NSTimeZone *)timeZone;
 
 /// Returns string representation of this date formatted for the given locale
 /// using the specified date and time format in the specified time zone.
@@ -475,8 +475,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param  locale          The locale that is used to format the date and time.
 ///                         The current locale will be used if `nil` is passed.
 - (NSString *)localizedStringWithFormat:(NSString *)format
-                                       timeZone:(nullable NSTimeZone *)timeZone
-                                         locale:(nullable NSLocale *)locale;
+                               timeZone:(nullable NSTimeZone *)timeZone
+                                 locale:(nullable NSLocale *)locale;
 
 /// Sets the default date style used for date time formatting. The default is @c NSDateFormatterMediumStyle.
 ///
