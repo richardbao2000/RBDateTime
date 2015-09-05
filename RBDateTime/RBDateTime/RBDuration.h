@@ -152,13 +152,13 @@ NS_ASSUME_NONNULL_BEGIN
 ///
 /// @param  duration1       The first duration to compare.
 /// @param  duration2       The second duration to compare.
-+ (NSComparisonResult)compare:(RBDuration *)duration1 to:(RBDuration *)duration2;
++ (NSComparisonResult)compare:(nullable RBDuration *)duration1 to:(nullable RBDuration *)duration2;
 /// Compares this instance to a given @c RBDuration instance and returns a @c NSComparisonResult
 /// that indicates whether this instance is shorter than, equal to, or longer than the given
 /// @c RBDuration instance.
 ///
 /// @param  duration        The other @RBDuration instance to compare with.
-- (NSComparisonResult)compareTo:(RBDuration *)duration;
+- (NSComparisonResult)compareTo:(nullable RBDuration *)duration;
 
 /// Returns a Boolean value that indicates whether the given duration equals to this instance.
 ///
