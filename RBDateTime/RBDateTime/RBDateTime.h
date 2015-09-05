@@ -69,13 +69,13 @@
 /// Initializes a new @c RBDateTime instance with a given year, month, day, hour, minute, and second
 /// for the specified calendar in the specified time zone.
 ///
-/// @param  year            The number of years.
-/// @param  month           The number of months. The first month is 1.
-/// @param  day             The number of days. The first day is 1.
-/// @param  hour            The number of hours.
-/// @param  minute          The number of minutes.
-/// @param  second          The number of seconds.
-/// @param  millisecond     The number of milliseconds.
+/// @param  year            The year component.
+/// @param  month           The month component. The first month is 1.
+/// @param  day             The day component. The first day is 1.
+/// @param  hour            The hour component.
+/// @param  minute          The minute component.
+/// @param  second          The second component.
+/// @param  millisecond     The millisecond component.
 /// @param  calendar        The calendar that is used to interpret year, month, and day.
 ///                         Gregorian calendar will be used if `nil` is passed.
 /// @param  timeZone        The specified time zone used to express the time.
@@ -114,31 +114,31 @@
 
 /// Creates a new @c RBDateTime initialized to a given year, month, and day.
 ///
-/// @param  year            The number of years.
-/// @param  month           The number of months. The first month is 1.
-/// @param  day             The number of days. The first day is 1.
+/// @param  year            The year component.
+/// @param  month           The month component. The first month is 1.
+/// @param  day             The day component. The first day is 1.
 + (nonnull instancetype)dateTimeWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day;
 
 /// Creates a new @c RBDateTime initialized to a given year, month, day, hour, minute, and second.
 ///
-/// @param  year            The number of years.
-/// @param  month           The number of months. The first month is 1.
-/// @param  day             The number of days. The first day is 1.
-/// @param  hour            The number of hours.
-/// @param  minute          The number of minutes.
-/// @param  second          The number of seconds.
+/// @param  year            The year component.
+/// @param  month           The month component. The first month is 1.
+/// @param  day             The day component. The first day is 1.
+/// @param  hour            The hour component.
+/// @param  minute          The minute component.
+/// @param  second          The second component.
 + (nonnull instancetype)dateTimeWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
                                     hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second;
 
 /// Creates a new @c RBDateTime initialized to a given year, month, day, hour, minute, and second in
 /// the specified time zone.
 ///
-/// @param  year            The number of years.
-/// @param  month           The number of months. The first month is 1.
-/// @param  day             The number of days. The first day is 1.
-/// @param  hour            The number of hours.
-/// @param  minute          The number of minutes.
-/// @param  second          The number of seconds.
+/// @param  year            The year component.
+/// @param  month           The month component. The first month is 1.
+/// @param  day             The day component. The first day is 1.
+/// @param  hour            The hour component.
+/// @param  minute          The minute component.
+/// @param  second          The second component.
 /// @param  timeZone        The specified time zone used to express the time.
 ///                         The local time zone will be used if `nil` is passed.
 + (nonnull instancetype)dateTimeWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
@@ -148,12 +148,12 @@
 /// Creates a new @c RBDateTime initialized to a given year, month, day, hour, minute, and second
 /// for the specified calendar.
 ///
-/// @param  year            The number of years.
-/// @param  month           The number of months. The first month is 1.
-/// @param  day             The number of days. The first day is 1.
-/// @param  hour            The number of hours.
-/// @param  minute          The number of minutes.
-/// @param  second          The number of seconds.
+/// @param  year            The year component.
+/// @param  month           The month component. The first month is 1.
+/// @param  day             The day component. The first day is 1.
+/// @param  hour            The hour component.
+/// @param  minute          The minute component.
+/// @param  second          The second component.
 /// @param  calendar        The calendar that is used to interpret year, month, and day.
 ///                         Gregorian calendar will be used if `nil` is passed.
 + (nonnull instancetype)dateTimeWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
@@ -163,13 +163,13 @@
 /// Creates a new @c RBDateTime initialized to a given year, month, day, hour, minute, and second
 /// for the specified calendar in the specified time zone.d
 ///
-/// @param  year            The number of years.
-/// @param  month           The number of months. The first month is 1.
-/// @param  day             The number of days. The first day is 1.
-/// @param  hour            The number of hours.
-/// @param  minute          The number of minutes.
-/// @param  second          The number of seconds.
-/// @param  millisecond     The number of milliseconds.
+/// @param  year            The year component.
+/// @param  month           The month component. The first month is 1.
+/// @param  day             The day component. The first day is 1.
+/// @param  hour            The hour component.
+/// @param  minute          The minute component.
+/// @param  second          The second component.
+/// @param  millisecond     The millisecond component.
 /// @param  calendar        The calendar that is used to interpret year, month, and day.
 ///                         Gregorian calendar will be used if `nil` is passed.
 /// @param  timeZone        The specified time zone used to express the time.
@@ -201,19 +201,19 @@
 /// Returns a @c NSDate instance that represents the same date and time. (read-only)
 @property (nonnull, readonly) NSDate *NSDate;
 
-/// Returns the number of years. (read-only)
+/// Returns the year component. (read-only)
 @property (readonly) NSInteger year;
-/// Returns the number of month. The first month is 1. (read-only)
+/// Returns the month component. The first month is 1. (read-only)
 @property (readonly) NSInteger month;
-/// Returns the number of days. The first day is 1. (read-only)
+/// Returns the day component. The first day is 1. (read-only)
 @property (readonly) NSInteger day;
-/// Returns the number of hours. (read-only)
+/// Returns the hour component. (read-only)
 @property (readonly) NSInteger hour;
-/// Returns the number of minutes. (read-only)
+/// Returns the minute component. (read-only)
 @property (readonly) NSInteger minute;
-/// Returns the number of seconds. (read-only)
+/// Returns the second component. (read-only)
 @property (readonly) NSInteger second;
-/// Returns the number of milliseconds. (read-only)
+/// Returns the millisecond component. (read-only)
 @property (readonly) NSInteger millisecond;
 
 /// Returns the calendar used to interpret year, month, and day. (read-only)
