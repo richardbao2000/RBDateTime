@@ -157,12 +157,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// that indicates whether this instance is shorter than, equal to, or longer than the given
 /// @c RBDuration instance.
 ///
-/// @param  duration        The other @RBDuration instance to compare with.
+/// @param  duration        The other @c RBDuration instance to compare with.
 - (NSComparisonResult)compareTo:(nullable RBDuration *)duration;
 
 /// Returns a Boolean value that indicates whether the given duration equals to this instance.
 ///
-/// @param  duration        The other @RBDuration instance to compare with.
+/// @param  duration        The other @c RBDuration instance to compare with.
 - (BOOL)equalsTo:(RBDuration *)duration;
 
 
