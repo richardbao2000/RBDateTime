@@ -25,6 +25,8 @@
 
 #import "RBDuration.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /// Represents a date and time with specific calendar and time zone.
 @interface RBDateTime : NSObject
 
@@ -33,12 +35,12 @@
 
 /// Initializes a new @c RBDateTime instance that is set to the current date and time on the device,
 /// expressed as the local time.
-- (nonnull instancetype)init;
+- (instancetype)init;
 
 /// Initializes a new @c RBDateTime instance with a @c NSDate object in the local time zone.
 ///
 /// @param  date            The @c NSDate object.
-- (nonnull instancetype)initWithNSDate:(nonnull NSDate *)date;
+- (instancetype)initWithNSDate:(NSDate *)date;
 
 /// Initializes a new @c RBDateTime instance with a @c NSDate object for the specified calendar in
 /// the specific time zone.
@@ -48,9 +50,9 @@
 ///                         Gregorian calendar will be used if `nil` is passed.
 /// @param  timeZone        The specified time zone used to express the time.
 ///                         The local time zone will be used if `nil` is passed.
-- (nonnull instancetype)initWithNSDate:(nonnull NSDate *)date
-                              calendar:(nullable NSCalendar *)calendar
-                              timeZone:(nullable NSTimeZone *)timeZone NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithNSDate:(NSDate *)date
+                      calendar:(nullable NSCalendar *)calendar
+                      timeZone:(nullable NSTimeZone *)timeZone NS_DESIGNATED_INITIALIZER;
 
 /// Initializes a new @c RBDateTime instance with the time interval since the Reference Date for
 /// the specifid calendar in the specified time zone.
@@ -62,9 +64,9 @@
 ///                         Gregorian calendar will be used if `nil` is passed.
 /// @param  timeZone        The specified time zone used to express the time.
 ///                         The local time zone will be used if `nil` is passed.
-- (nonnull instancetype)initWithTimeIntervalSinceReferenceDate:(NSTimeInterval)seconds
-                                                      calendar:(nullable NSCalendar *)calendar
-                                                      timeZone:(nullable NSTimeZone *)timeZone NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithTimeIntervalSinceReferenceDate:(NSTimeInterval)seconds
+                                              calendar:(nullable NSCalendar *)calendar
+                                              timeZone:(nullable NSTimeZone *)timeZone NS_DESIGNATED_INITIALIZER;
 
 /// Initializes a new @c RBDateTime instance with a given year, month, day, hour, minute, and second
 /// for the specified calendar in the specified time zone.
@@ -80,11 +82,11 @@
 ///                         Gregorian calendar will be used if `nil` is passed.
 /// @param  timeZone        The specified time zone used to express the time.
 ///                         The local time zone will be used if `nil` is passed.
-- (nonnull instancetype)initWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
-                                hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second
-                         millisecond:(NSInteger)millisecond
-                            calendar:(nullable NSCalendar *)calendar
-                            timeZone:(nullable NSTimeZone *)timeZone NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
+                        hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second
+                 millisecond:(NSInteger)millisecond
+                    calendar:(nullable NSCalendar *)calendar
+                    timeZone:(nullable NSTimeZone *)timeZone NS_DESIGNATED_INITIALIZER;
 
 /// Creates a new @c RBDateTime initialized with a @c NSDate instance for the specified calendar in
 /// the specified time zone.
@@ -94,9 +96,9 @@
 ///                         Gregorian calendar will be used if `nil` is passed.
 /// @param  timeZone        The specified time zone used to express the time.
 ///                         The local time zone will be used if `nil` is passed.
-+ (nonnull instancetype)dateTimeWithNSDate:(nonnull NSDate *)date
-                                  calendar:(nullable NSCalendar *)calendar
-                                  timezone:(nullable NSTimeZone *)timeZone;
++ (instancetype)dateTimeWithNSDate:(NSDate *)date
+                          calendar:(nullable NSCalendar *)calendar
+                          timezone:(nullable NSTimeZone *)timeZone;
 
 /// Creates a new @c RBDateTime initialized with the time interval since the Referenece Date for
 /// the specifid calendar in the specified time zone.
@@ -108,16 +110,16 @@
 ///                         Gregorian calendar will be used if `nil` is passed.
 /// @param  timeZone        The specified time zone used to express the time.
 ///                         The local time zone will be used if `nil` is passed.
-+ (nonnull instancetype)dateTimeWithTimeIntervalSinceReferenceDate:(NSTimeInterval)timeIntervalSinceReferenceDate
-                                                          calendar:(nullable NSCalendar *)calendar
-                                                          timezone:(nullable NSTimeZone *)timeZone;
++ (instancetype)dateTimeWithTimeIntervalSinceReferenceDate:(NSTimeInterval)timeIntervalSinceReferenceDate
+                                                  calendar:(nullable NSCalendar *)calendar
+                                                  timezone:(nullable NSTimeZone *)timeZone;
 
 /// Creates a new @c RBDateTime initialized to a given year, month, and day.
 ///
 /// @param  year            The year component.
 /// @param  month           The month component. The first month is 1.
 /// @param  day             The day component. The first day is 1.
-+ (nonnull instancetype)dateTimeWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day;
++ (instancetype)dateTimeWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day;
 
 /// Creates a new @c RBDateTime initialized to a given year, month, day, hour, minute, and second.
 ///
@@ -127,8 +129,8 @@
 /// @param  hour            The hour component.
 /// @param  minute          The minute component.
 /// @param  second          The second component.
-+ (nonnull instancetype)dateTimeWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
-                                    hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second;
++ (instancetype)dateTimeWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
+                            hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second;
 
 /// Creates a new @c RBDateTime initialized to a given year, month, day, hour, minute, and second in
 /// the specified time zone.
@@ -141,9 +143,9 @@
 /// @param  second          The second component.
 /// @param  timeZone        The specified time zone used to express the time.
 ///                         The local time zone will be used if `nil` is passed.
-+ (nonnull instancetype)dateTimeWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
-                                    hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second
-                                timeZone:(nullable NSTimeZone *)timeZone;
++ (instancetype)dateTimeWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
+                            hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second
+                        timeZone:(nullable NSTimeZone *)timeZone;
 
 /// Creates a new @c RBDateTime initialized to a given year, month, day, hour, minute, and second
 /// for the specified calendar.
@@ -156,9 +158,9 @@
 /// @param  second          The second component.
 /// @param  calendar        The calendar that is used to interpret year, month, and day.
 ///                         Gregorian calendar will be used if `nil` is passed.
-+ (nonnull instancetype)dateTimeWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
-                                    hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second
-                                calendar:(nullable NSCalendar *)calendar;
++ (instancetype)dateTimeWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
+                            hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second
+                        calendar:(nullable NSCalendar *)calendar;
 
 /// Creates a new @c RBDateTime initialized to a given year, month, day, hour, minute, and second
 /// for the specified calendar in the specified time zone.d
@@ -174,32 +176,32 @@
 ///                         Gregorian calendar will be used if `nil` is passed.
 /// @param  timeZone        The specified time zone used to express the time.
 ///                         The local time zone will be used if `nil` is passed.
-+ (nonnull instancetype)dateTimeWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
-                                    hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second
-                             millisecond:(NSInteger)millisecond
-                                calendar:(nullable NSCalendar *)calendar
-                                timeZone:(nullable NSTimeZone *)timeZone;
++ (instancetype)dateTimeWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
+                            hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second
+                     millisecond:(NSInteger)millisecond
+                        calendar:(nullable NSCalendar *)calendar
+                        timeZone:(nullable NSTimeZone *)timeZone;
 
 /// Gets a @c RBDateTime instance that is set to the current date and time on the device, expressed
 /// as the local time.
-+ (nonnull instancetype)now;
++ (instancetype)now;
 /// Gets a @c RBDateTime instance that is set to the current date and time on the device, expressed
 /// as the UTC time.
-+ (nonnull instancetype)nowUTC;
++ (instancetype)nowUTC;
 
 /// Gets a @c RBDateTime instance that is set to the current date without time part on the device,
 /// expressed as the local time.
-+ (nonnull instancetype)today;
++ (instancetype)today;
 /// Gets a @c RBDateTime instance that is set to the current date without time part on the device,
 /// expressed as the UTC time.
-+ (nonnull instancetype)todayUTC;
++ (instancetype)todayUTC;
 
 
 
 #pragma mark - Components
 
 /// Returns a @c NSDate instance that represents the same date and time. (read-only)
-@property (nonnull, readonly) NSDate *NSDate;
+@property (readonly) NSDate *NSDate;
 
 /// Returns the year component. (read-only)
 @property (readonly) NSInteger year;
@@ -217,9 +219,9 @@
 @property (readonly) NSInteger millisecond;
 
 /// Returns the calendar used to interpret year, month, and day. (read-only)
-@property (nonnull, readonly) NSCalendar *calendar;
+@property (readonly) NSCalendar *calendar;
 /// Returns the time zone. (read-only)
-@property (nonnull, readonly) NSTimeZone *timeZone;
+@property (readonly) NSTimeZone *timeZone;
 
 
 
@@ -239,10 +241,10 @@
 
 /// Returns a @c RBDateTime instance that only contains the date portion without the time of the day.
 /// (read-only)
-@property (nonnull, readonly) RBDateTime *date;
+@property (readonly) RBDateTime *date;
 /// Returns a @c RBDuration instance that contains the time portion (from midnight to date).
 /// (read-only)
-@property (nonnull, readonly) RBDuration *timeOfDay;
+@property (readonly) RBDuration *timeOfDay;
 
 /// Returns the 1-based number of days in the week.
 /// In Gregorian calendar, Sunday is the first day of a week, which is represented by 1.
@@ -270,19 +272,19 @@
 /// @param  years           The number of years.
 /// @param  months          The number of months.
 /// @param  days            The number of days.
-- (nonnull instancetype)dateTimeByAddingYears:(NSInteger)years months:(NSInteger)months days:(NSInteger)days;
+- (instancetype)dateTimeByAddingYears:(NSInteger)years months:(NSInteger)months days:(NSInteger)days;
 /// Returns a new @c RBDateTime that adds the given number of days to the value
 /// of this instance.
 ///
 /// @param  days            The number of days.
-- (nonnull instancetype)dateTimeByAddingDays:(NSInteger)days;
+- (instancetype)dateTimeByAddingDays:(NSInteger)days;
 /// Returns a new @c RBDateTime that adds the given number of hours, minutes, and seconds to the value
 /// of this instance.
 ///
 /// @param  hours           The number of hours.
 /// @param  minutes         The number of minutes.
 /// @param  seconds         The number of seconds.
-- (nonnull instancetype)dateTimeByAddingHours:(NSInteger)hours minutes:(NSInteger)minutes seconds:(NSInteger)seconds;
+- (instancetype)dateTimeByAddingHours:(NSInteger)hours minutes:(NSInteger)minutes seconds:(NSInteger)seconds;
 
 /// Returns a new @c RBDateTime that adds the given number of years, months, days, hours, minutes,
 /// seconds, and milliseconds to the value of this instance.
@@ -294,20 +296,20 @@
 /// @param  minutes         The number of minutes.
 /// @param  seconds         The number of seconds.
 /// @param  milliseconds    The number of milliseconds.
-- (nonnull instancetype)dateTimeByAddingYears:(NSInteger)years months:(NSInteger)months days:(NSInteger)days
-                                        hours:(NSInteger)hours minutes:(NSInteger)minutes seconds:(NSInteger)seconds
-                                 milliseconds:(NSInteger)milliseconds;
+- (instancetype)dateTimeByAddingYears:(NSInteger)years months:(NSInteger)months days:(NSInteger)days
+                                hours:(NSInteger)hours minutes:(NSInteger)minutes seconds:(NSInteger)seconds
+                         milliseconds:(NSInteger)milliseconds;
 
 /// Returns a new @c RBDateTime that adds the value of the given @c RBDuration to the value
 /// of this instance.
 ///
 /// @param  duration        The specified duration to add.
-- (nonnull instancetype)dateTimeByAddingDuration:(nonnull RBDuration *)duration;
+- (instancetype)dateTimeByAddingDuration:(RBDuration *)duration;
 /// Returns a new @c RBDateTime that subtracts the value of the given @c RBDuration to the value
 /// of this instance.
 ///
 /// @param  duration        The specified duration to subtract.
-- (nonnull instancetype)dateTimeBySubtractingDuration:(nonnull RBDuration *)duration;
+- (instancetype)dateTimeBySubtractingDuration:(RBDuration *)duration;
 
 /// Adds the given number of years, months, and days to the value of this instance.
 ///
@@ -343,10 +345,10 @@
 
 /// Adds the value of the given @c RBDuration to the value of this instance.
 /// @param  duration        The specified duration to add.
-- (void)addDuration:(nonnull RBDuration *)duration;
+- (void)addDuration:(RBDuration *)duration;
 /// Subtracts the value of the given @c RBDuration to the value of this instance.
 /// @param  duration        The specified duration to subtract.
-- (void)subtractDuration:(nonnull RBDuration *)duration;
+- (void)subtractDuration:(RBDuration *)duration;
 
 /// Returns a Boolean value that indicates whether the given date time equals to this instance.
 ///
@@ -361,14 +363,14 @@
 #pragma mark - Time Zone Converting
 
 /// Returns a new @c RBDateTime that converts this instance to Coordinated Universal Time (UTC).
-- (nonnull instancetype)utcTime;
+- (instancetype)utcTime;
 /// Returns a new @c RBDateTime that converts this instance to local time.
-- (nonnull instancetype)localTime;
+- (instancetype)localTime;
 /// Returns a new @c RBDateTime that converts this instance to the given time zone.
 ///
 /// @param  targetTimeZone  The target time zone to convert to. If `nil` is passed, the local time
 ///                         zone will be used instead.
-- (nonnull instancetype)dateTimeInTimeZone:(nullable NSTimeZone *)targetTimeZone;
+- (instancetype)dateTimeInTimeZone:(nullable NSTimeZone *)targetTimeZone;
 
 
 @end
@@ -383,8 +385,8 @@
 ///
 /// @param  dateStyle       A format style for the date. For possible values, see @c NSDateFormatterStyle.
 /// @param  timeStyle       A format style for the time. For possible values, see @c NSDateFormatterStyle.
-- (nonnull NSString *)localizedStringWithDateStyle:(NSDateFormatterStyle)dateStyle
-                                         timeStyle:(NSDateFormatterStyle)timeStyle;
+- (NSString *)localizedStringWithDateStyle:(NSDateFormatterStyle)dateStyle
+                                 timeStyle:(NSDateFormatterStyle)timeStyle;
 
 /// Returns string representation of this date using the specified date and time style
 /// in the specified time zone.
@@ -393,9 +395,9 @@
 /// @param  timeStyle       A format style for the time. For possible values, see @c NSDateFormatterStyle.
 /// @param  timeZone        The specified time zone used to express the time.
 ///                         The local time zone will be used if `nil` is passed.
-- (nonnull NSString *)localizedStringWithDateStyle:(NSDateFormatterStyle)dateStyle
-                                         timeStyle:(NSDateFormatterStyle)timeStyle
-                                          timeZone:(nullable NSTimeZone *)timeZone;
+- (NSString *)localizedStringWithDateStyle:(NSDateFormatterStyle)dateStyle
+                                 timeStyle:(NSDateFormatterStyle)timeStyle
+                                  timeZone:(nullable NSTimeZone *)timeZone;
 
 /// Returns string representation of this date formatted for the given locale
 /// using the specified date and time in the specified time zone.
@@ -406,10 +408,10 @@
 ///                         The local time zone will be used if `nil` is passed.
 /// @param  locale          The locale that is used to format the date and time.
 ///                         The current locale will be used if `nil` is passed.
-- (nonnull NSString *)localizedStringWithDateStyle:(NSDateFormatterStyle)dateStyle
-                                         timeStyle:(NSDateFormatterStyle)timeStyle
-                                          timeZone:(nullable NSTimeZone *)timeZone
-                                            locale:(nullable NSLocale *)locale;
+- (NSString *)localizedStringWithDateStyle:(NSDateFormatterStyle)dateStyle
+                                 timeStyle:(NSDateFormatterStyle)timeStyle
+                                  timeZone:(nullable NSTimeZone *)timeZone
+                                    locale:(nullable NSLocale *)locale;
 
 /// Returns string representation of this date formatted for the current locale
 /// using the specified date and time format template.
@@ -418,7 +420,7 @@
 /// will be adjusted based on the given locale, also additional separators will be inserted.
 ///
 /// @param  formatTemplate  A string template for generating locale-specific format string.
-- (nonnull NSString *)localizedStringWithFormatTemplate:(nonnull NSString *)formatTemplate;
+- (NSString *)localizedStringWithFormatTemplate:(NSString *)formatTemplate;
 
 /// Returns string representation of this date formatted for the given locale
 /// using the specified date and time format template in the specified time zone.
@@ -429,8 +431,8 @@
 /// @param  formatTemplate  A string template for generating locale-specific format string.
 /// @param  timeZone        The specified time zone used to express the time.
 ///                         The local time zone will be used if `nil` is passed.
-- (nonnull NSString *)localizedStringWithFormatTemplate:(nonnull NSString *)formatTemplate
-                                               timeZone:(nullable NSTimeZone *)timeZone;
+- (NSString *)localizedStringWithFormatTemplate:(NSString *)formatTemplate
+                                       timeZone:(nullable NSTimeZone *)timeZone;
 
 /// Returns string representation of this date formatted for the given locale
 /// using the specified date and time format template in the specified time zone.
@@ -443,9 +445,9 @@
 ///                         The local time zone will be used if `nil` is passed.
 /// @param  locale          The locale that is used to format the date and time.
 ///                         The current locale will be used if `nil` is passed.
-- (nonnull NSString *)localizedStringWithFormatTemplate:(nonnull NSString *)formatTemplate
-                                               timeZone:(nullable NSTimeZone *)timeZone
-                                                 locale:(nullable NSLocale *)locale;
+- (NSString *)localizedStringWithFormatTemplate:(NSString *)formatTemplate
+                                       timeZone:(nullable NSTimeZone *)timeZone
+                                         locale:(nullable NSLocale *)locale;
 
 /// Returns string representation of this date formatted for the current locale
 /// using the specified date and time format.
@@ -453,7 +455,7 @@
 /// @param  format          The specified format string used to format the date and time.
 /// @param  timeZone        The specified time zone used to express the date and time.
 ///                         The local time zone will be used if `nil` is passed.
-- (nonnull NSString *)localizedStringWithFormat:(nonnull NSString *)format;
+- (NSString *)localizedStringWithFormat:(NSString *)format;
 
 /// Returns string representation of this date formatted for the current locale
 /// using the specified date and time format in the specified time zone.
@@ -461,8 +463,8 @@
 /// @param  format          The specified format string used to format the date and time.
 /// @param  timeZone        The specified time zone used to express the date and time.
 ///                         The local time zone will be used if `nil` is passed.
-- (nonnull NSString *)localizedStringWithFormat:(nonnull NSString *)format
-                                       timeZone:(nullable NSTimeZone *)timeZone;
+- (NSString *)localizedStringWithFormat:(NSString *)format
+                               timeZone:(nullable NSTimeZone *)timeZone;
 
 /// Returns string representation of this date formatted for the given locale
 /// using the specified date and time format in the specified time zone.
@@ -472,9 +474,9 @@
 ///                         The local time zone will be used if `nil` is passed.
 /// @param  locale          The locale that is used to format the date and time.
 ///                         The current locale will be used if `nil` is passed.
-- (nonnull NSString *)localizedStringWithFormat:(nonnull NSString *)format
-                                       timeZone:(nullable NSTimeZone *)timeZone
-                                         locale:(nullable NSLocale *)locale;
+- (NSString *)localizedStringWithFormat:(NSString *)format
+                               timeZone:(nullable NSTimeZone *)timeZone
+                                 locale:(nullable NSLocale *)locale;
 
 /// Sets the default date style used for date time formatting. The default is @c NSDateFormatterMediumStyle.
 ///
@@ -495,10 +497,10 @@
 
 /// Returns string representation of the date part without the time of the day formatted for the
 /// current locale using default date style.
-- (nonnull NSString *)localizedDate;
+- (NSString *)localizedDate;
 /// Returns string representation of the time of the day without the date part formatted for the
 /// current locale using default time style.
-- (nonnull NSString *)localizedTime;
+- (NSString *)localizedTime;
 /// Returns string representation of the date and time formatted for the current locale
 /// using default date and time style.
 ///
@@ -506,13 +508,13 @@
 /// first. If it is set to `nil` (by default), it will look up the default date time format template
 /// (set by @c +setDefaultDateTimeFormatTemplate:). If both of them are `nil`, the default date style
 /// and time style will be used.
-- (nonnull NSString *)localizedString;
+- (NSString *)localizedString;
 
 /// Returns string representation of the date and time formatted as UNIX timestamp.
-- (nonnull NSString *)formattedUnixTimestamp;
+- (NSString *)formattedUnixTimestamp;
 /// Returns string representation of the date and time formatted as UNIX timestamp in
 /// Coordinated Universal Time (UTC).
-- (nonnull NSString *)formattedUnixTimestampUTC;
+- (NSString *)formattedUnixTimestampUTC;
 
 
 #pragma mark - Parsing
@@ -522,7 +524,7 @@
 ///
 /// @param  string          The date time string to parse.
 /// @param  format          The specified date time format.
-+ (nullable instancetype)dateTimeByParsingString:(nonnull NSString *)string withFormat:(nonnull NSString *)format;
++ (nullable instancetype)dateTimeByParsingString:(NSString *)string withFormat:(NSString *)format;
 /// Returns a @c RBDateTime instance by parsing text string using specific format
 /// in the given time zone.
 ///
@@ -530,27 +532,29 @@
 /// @param  format          The specified date time format.
 /// @param  timeZone        The specified time zone used to express the time.
 ///                         The local time zone will be used if `nil` is passed.
-+ (nullable instancetype)dateTimeByParsingString:(nonnull NSString *)string withFormat:(nonnull NSString *)format
++ (nullable instancetype)dateTimeByParsingString:(NSString *)string withFormat:(NSString *)format
                                         timeZone:(nullable NSTimeZone *)timeZone;
 
 /// Returns a @c RBDateTime instance by parsing a given UNIX timestamp text string
 /// in the current time zone.
 ///
 /// @param  unixTimestamp   The UNIX timestamp text string to parse.
-+ (nullable instancetype)dateTimeByParsingUnixTimestamp:(nonnull NSString *)unixTimestamp;
++ (nullable instancetype)dateTimeByParsingUnixTimestamp:(NSString *)unixTimestamp;
 /// Returns a @c RBDateTime instance by parsing a given UNIX timestamp text string
 /// in Coordinated Universal Time (UTC).
 ///
 /// @param  unixTimestamp   The UNIX timestamp text string to parse.
-+ (nullable instancetype)dateTimeByParsingUnixTimestampUTC:(nonnull NSString *)unixTimestamp;
++ (nullable instancetype)dateTimeByParsingUnixTimestampUTC:(NSString *)unixTimestamp;
 /// Returns a @c RBDateTime instance by parsing a given UNIX timestamp text string
 /// in the given time zone.
 ///
 /// @param  unixTimestamp   The UNIX timestamp text string to parse.
 /// @param  timeZone        The specified time zone used to express the time.
 ///                         The local time zone will be used if `nil` is passed.
-+ (nullable instancetype)dateTimeByParsingUnixTimestamp:(nonnull NSString *)unixTimestamp
++ (nullable instancetype)dateTimeByParsingUnixTimestamp:(NSString *)unixTimestamp
                                                timeZone:(nullable NSTimeZone *)timeZone;
 
 
 @end
+
+NS_ASSUME_NONNULL_END
