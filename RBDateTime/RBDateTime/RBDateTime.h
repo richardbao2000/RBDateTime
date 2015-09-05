@@ -453,8 +453,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// using the specified date and time format.
 ///
 /// @param  format          The specified format string used to format the date and time.
-/// @param  timeZone        The specified time zone used to express the date and time.
-///                         The local time zone will be used if `nil` is passed.
 - (NSString *)localizedStringWithFormat:(NSString *)format;
 
 /// Returns string representation of this date formatted for the current locale
